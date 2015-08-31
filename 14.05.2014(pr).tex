@@ -1,0 +1,58 @@
+\section{Практика}\marginpar{\framebox{14.05.2014}}
+\begin{tsk}
+	Знайти:
+	\begin{equation}
+		\mP\set{N(2)=3,N(3)=4,N(5)>6}
+	\end{equation}
+	\begin{multline}
+		\mP\set{N(2)=3,N(3)=4,N(5)>6} ={}\\{}= \mP\set{N(2)=3,N(3)-N(2)=1,N(5)-N(3)>2} = {}\\ {} =\mP\set{N(2)=3}\cdot \mP\set{N(3)-N(2)=1} \cdot \mP\set{N(5)-N(3)>2} ={}\\{}= \cfrac{e^{-2\la} \cb{2\la}^3}{3!} \cdot \cfrac{e^{-\la} \la }{1!} \cb{1 - \cfrac{e^{-2\la}\cb{2\la}^0}{1} - \cfrac{e^{-2\la}\cb{2\la}^1}{1} - \cfrac{e^{-2\la}\cb{2\la}^2}{2}} ={}\\{}= \cfrac{e^{-3\la} 4 \la^4}{3} \cb{1 - e^{-2\la} - 2\la e^{-2\la} - 2\la^2 \cb{-2\la}}
+	\end{multline}
+\end{tsk}
+\begin{tsk}
+	Знайти
+	\begin{equation}
+		\mP\set{N(t)\div2}
+	\end{equation}
+	\begin{multline}
+		\mP\set{N(t)\div2} = {}\\{} = \mP\set{\exists k\in N: N(5) = 2k} = \suml_{k=0}^\infty \mP\set{N(5)= 2k}  = \suml_{k=0}^\infty e^{-5\la} \cfrac{\cb{5\la}^{2k}}{2k!} = {} \\ {} = e^{-5\la} \suml_{k=0}^\infty  \cfrac{\cb{5\la}^{2k}}{2k!} = e^{-5\la} + \ch 5\la ={}\\{} = \cfrac12 + \cfrac12 e^{-10\la}
+	\end{multline}
+\end{tsk}
+\begin{tsk}
+	Знайти
+	\begin{equation}
+		\mP\set{N(1)+N(3)+N(5) = N(2)+N(4)+N(6)}
+	\end{equation}
+	\begin{multline}
+		\mP\set{N(1)+N(3)+N(5) = N(2)+N(4)+N(6)} ={}\\{}= \mP\set{N(1)=N(2),N(3)=N(4),N(5)=N(6)} ={}\\{}= \mP\set{N(1)-N(2)=0}\cdot \mP\set{N(3)-N(4)=0} \cdot \mP\set{N(5)-N(6)=0}  ={}\\{} = e^{-3\la}
+	\end{multline}
+\end{tsk}
+\begin{tsk}
+	Знайти
+	\begin{equation}
+		\mP\set{N(1)+N(3)+N(5) +10 = N(2)+N(4)+N(6)}
+	\end{equation}
+	\begin{multline}
+		\mP\set{N(1)+N(3)+N(5) +10 = N(2)+N(4)+N(6)} = {} \\ {} = \mP\set{\cb{N(2)-N(1)} + \cb{N(4) - N(3)} + \cb{N(5)-N(6)} = 10} ={}\\{} = \mP\set{\xi_1+\xi_2+\xi_3 = 10},\xi_1,\xi_2,\xi_3\sim Pois(\la)
+	\end{multline}
+	\begin{equation}
+		\mP\set{\xi_1+\xi_2+\xi_3 = 10} = \mP\set{\eta = 10},\eta\sim Pois(3\la)
+	\end{equation}
+	\begin{equation}
+		\mP\set{\eta=10} = e^{-3\la} \cfrac{\cb{3\la}^10}{10!}
+	\end{equation}
+\end{tsk}
+\subsection{Домашнє завдання}
+\begin{tsk}
+	Знайти коваріаціну функцію процесу $X(t)$, де
+	\begin{equation}
+		X(t) = N(t+1)-N(t)
+	\end{equation}
+\end{tsk}
+\begin{tsk}
+	Знайти
+	\begin{equation}
+		f_{\tau\diagup_{N(1)=1}} (x)
+	\end{equation}
+	Де $\tau$ - момент появи першої події у потоку Пуассона
+\end{tsk}
+

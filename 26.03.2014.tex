@@ -1,0 +1,92 @@
+\section{Знаходження ймовірності та середніх часів досягнення множини станів} \marginpar{\framebox{26.03.2014}}
+Починаючи з цього моменту $E$ може бути ліченим\\
+$A\subset E$, $A$ - містить деякі стани\\
+$\tau$ - момент першого потрапляння в $A:\tau = \min\set{n\geq 0:\xi_n\in A}$ \\
+$f_i$ - ймовірність $\set{\tau<\infty\diagup_{\xi_0=i}}$ - ймовірність хоч колись потрапити в множину станів $A$, якщо процес починається з $i$-того стану.\\
+Як знаходити $f_i$?:
+\begin{equation}\label{tr:6:1}
+	\system{f_i=1,\quad i\in A\\ f_i = \suml_{j\in E} p_{ij} \cdot f_j, i\not\in A}
+\end{equation}
+\begin{teor}
+$\cb{f_i}i\in E$ - є найменшим невід’ємним роз’язком системи \eqref{tr:6:1}
+\end{teor}
+\begin{proof}
+Якщо $\cb{f_i}i\in E$ - справжні ймовірності потрапляння в $A$, то $\cb{f_i}i\in E$ задовольняє системі \eqref{tr:6:1}\\
+Навпаки: Нехай $\cb{f_i}i\in E$ - розв’язок (невід’ємний, деякий)
+\begin{itemize}
+	\item Якщо $i\in A$: Тоді у системі $f_i=1$. З іншого боку $P\cb{A} = 1$
+	\item Якщо $i\not\in A$: $f_i = \suml_{j\in A}p_{ij} f_j + \suml_{j\not\in A}p_{ij}f_j = \suml_{j\in A}p_{ij} + \suml_{j\not\in A}p_{ij}f_j = \suml_{j\in A} + \suml_{j\not\in A}\suml_{k\in E} p_{ij}p_{jk}f_k = \suml_{j\in A} p_{ij} + \suml{j\not\in A}\suml_{k\in A} p_{ij}p_{jk}\cdot 1 + \suml_{j\not\in A} \suml_{\not\in A} p_{ij}p_{jk}f_k = ...$\\
+	В решті решт отримуємо:
+	$
+		\suml_{i_1\in A}p_{ii_1} + \suml_{i_1\not\in A}{i_2\in A} p_{ii_1}p_{ii_2} + \ldots + \suml_{i_1\not\in A} \suml_{i_2\not\in A} \ldots\suml_{i_n\in A} p_{ii_1}\ldots p_{i_{n-1}i_n} + \suml_{i_1\not\in A} \suml_{i_2\not\in A} \ldots\suml_{i_n\not\in A} p_{ii_1}\ldots p_{i_{n-1}i_n} f_n\geq 0
+	$\\
+	Оскільки $\suml_{i_1\in A}p_{ii_1} + \suml_{i_1\not\in A}{i_2\in A} p_{ii_1}p_{ii_2} + \ldots + \suml_{i_1\not\in A} \suml_{i_2\not\in A} \ldots\suml_{i_n\in A} p_{ii_1}\ldots p_{i_{n-1}i_n} = \mP\set{\tau=i\diagup_{\xi_0=i}} + \ldots + \mP\set{\tau=n\diagup_{\xi_0=i}}$\\
+	Отримуємо, що $f_i \geq \mP\set{t\leq n\diagup_{\xi_0=i}}$.\\
+	Якщо $n\to\infty$, то отримуємо $f_i\geq \mP\set{\tau<\infty\diagup_{\xi_0=i}}$. Отже, потрібно взяти найменший невід’ємний розв’язок.
+\end{itemize}
+\end{proof}
+\begin{exs}
+Дискретний процес розмноження та загибелі.\\
+$\xi_0,\xi_1,\ldots$\\
+Початкові дані $\xi_0=k$. Розвиток: $\xi_{n+1} = \xi_n \pm 1$ з ймовірністю $p$ та $q$ відповідно. \\
+Нехай $k>0$. Яка ймовірність того, що популяція виродиться?\\
+$A=\set{k=0} = \set{0},f_k = \mP\set{\tau<\infty\diagup_{\xi_0=k}}$\\
+Складаємо систему
+\begin{equation}
+	\system{f_0=1\\ f_k = pf_{k+1} + qf_{k-1},\forall k\geq 1}
+\end{equation}
+Якщо корені $\la_1$ та $\la_2$ характеристичного рівняння дійсні та різні, то $f_k = C_1 \la_1^k + C_2\la_2^k$\\
+Якщо $\la_1=\la_2=\la$, то $f_k=C_1 \la^k + C_2\la^k$\\
+$\la=p\la^2 + q\quad\Rightarrow\quad \la_1 = 1;\la_2=\cfrac qp$\\
+Нехай $q\neq p$, тоді $f_k = C_11^k + C_2 \cb{\cfrac qp}^k$ або $f_k = C_1 + C_2\cb{\cfrac qp}^k$\\
+$1=f_0 = C_1 + C_2 \Rightarrow C_1 = 1 - C_2$\\
+Отримуємо $f_k = 1 - C_2 + C_2\cb{\cfrac qp}^k$ або \framebox{$f_k = 1 - \cb{\cb{\cfrac qp}^k - 1}C_2$}\\
+\begin{description}
+\item[Якщо p<q] $\cb{\cfrac qp}^k -1\xrightarrow[k\to\infty]{} \infty \Rightarrow C_2\geq 0$\\
+	$\cb{\cfrac qp}^k -1\geq 0\min\Rightarrow C_2 = 0$, отже $f_k=1$
+\item[Якщо p>q] $\cb{\cfrac qp}^k -1\xrightarrow[k\to\infty]{} -1 \Rightarrow C_2\leq $\\
+	$\cb{\cfrac qp}^k -1<1\max\Rightarrow C_2 = 1$, отже $f_k=\cb{\cfrac qp}^k$
+\item[Якщо p=q] $f_k=1$
+\end{description}
+\end{exs}
+Як знайти $m_k = \mEt{\tau\diagup_{\xi_0=k}}$\\
+Має сенс шукати, якщо $\forall k: f_k=1$ за допомогою такої системи:
+\begin{equation}\label{tr:6:2}
+	\system{m_k=0,\quad k\in A\\ m_k = \suml_{l\in E} p_{kl} m_l + 1,k\not\in A}
+\end{equation}
+\begin{teor}
+Середні кількості кроків до $A$ є найменшим невід’ємним розв’язком системи \eqref{tr:6:2}
+\end{teor}
+\begin{proof}
+Якщо є середні кількості, то вони задовольняють \eqref{tr:6:2}\\
+Навпаки: нехай $(m_k),k\in E$ - деякий розв’язок (невід’ємний).
+\begin{equation*}
+k\in A:\quad m_k=0\\
+\end{equation*}
+\begin{multline*}
+k\not\in A:\quad m_k = 1 + \suml_{k_1\in E} p_{kk_1} m_{k_1} = 1 + \suml_{k_1\in A} p_{kk_1} m_{k_1} + \suml_{k_1\not\in A}p_{kk_1} m_{k_1}= \ldots {}\\{}\ldots= 1 + \suml_{k_1\in A} p_{kk_1} + \ldots + \suml_{k_1\not\in A} \ldots\suml_{k_n\in A} p_{kk_1}\ldots p_{k_{n-1}k_n} +{}\\{}+ \suml_{k_1\not\in A} \ldots\suml_{k_n\not\in A} p_{kk_1}\ldots p_{k_{n-1}k_n} m_{k_n} 
+\end{multline*}
+Отримали $m_k \geq 1 + \suml_{k_1\in A} p_{kk_1} + \ldots + \suml_{k_1\not\in A} \ldots\suml_{k_n\in A} p_{kk_1}\ldots p_{k_{n-1}k_n}$\\
+Або $m_k \geq \mP\set{\tau\geq 1\diagup_{\xi_0=k}} + \ldots + \mP\set{\tau\geq n+1\diagup_{\xi_0=k}}$
+\begin{war}
+$\mP\set{\tau\geq 1} + \ldots  = \cb{p_1+ p_2 + p_3 + \ldots} + \cb{p_2 + p_3 +\ldots} +\ldots = p_1 + 2p_2 + 3p_3 + \ldots = \mEt{\tau}$
+\end{war}
+\noindent Звісно, при $n\to\infty$ отримуємо $m_k \geq \suml_{l=1}^\infty \mP\set{\tau\geq l\diagup_{\xi_0=k}} = \mEt{\tau\diagup_{\xi_0=k}}$ - справжня середня кількість кроків до $A$. Тому потрібно брати найменший невід’ємний розв’язок.
+\end{proof}
+\begin{exs}
+Дискретний розподіл розмноження та загибелі. $p\leq q$, $f_k=1$.\\
+Побудуємо систему:
+\begin{equation}
+	\system{m_0 =0 \\ m_k = 1 + pm_{k+1} + qm_{k-1}}
+\end{equation}
+\begin{equation}
+	\system{m_2 = m_{2\to 1} + m_{1\to 0} = 2m_1 \\ m_k = km_1 = C_k}
+\end{equation}
+$C_k = 1 + p C(k+1) + q C(k-1) = 1 + C_k + pC - qC \Rightarrow C = \cfrac1{q-p}$\\
+Отже, отримали:
+\begin{equation}
+	m_k = \system{\cfrac k{q-p}, q>p\\ \infty , q=p}
+\end{equation}
+\end{exs}
+
+

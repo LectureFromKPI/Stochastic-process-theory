@@ -1,0 +1,73 @@
+\section{Практика} \marginpar{\framebox{02.04.2014}}
+\begin{tsk}
+\begin{tikzpicture}
+\node[] (s1) {4.Саша};
+\node[right=of s1] (s2) {3.Аркаша};
+\node[above=of s1] (s3) {2.Маньяк 1};
+\node[above=of s2] (s4) {1.Маньяк 2};
+\path[->]
+(s1) edge node[above]{2/3} (s2)
+(s2) edge[bend left] node[below]{1/2} (s1)
+(s1) edge node[left]{1/6} (s3)
+(s1) edge[loop left] node[left]{1/6} (s1)
+(s2) edge[loop right] node[right]{1/3} (s2)
+(s2) edge node[right]{1/6} (s4);
+\end{tikzpicture}\\
+Питання : 
+\begin{equation}
+h_i = \mP\set{\xi_\infty = 1\setminus \xi_0 = i}
+\end{equation}
+\begin{eqnarray}
+h_1 &=& 1\\
+h_2 &=& 0\\
+h_3 &=& \cfrac16 \cdot h_1 + \cfrac16 \cdot h_3 + \cfrac23 \cdot h_4\\
+h_4 &=& \cfrac12 \cdot h_3 + \cfrac16 h_2 + \cfrac13 \cdot h_4
+\end{eqnarray}
+Отримали: $h_3 = \cfrac12;h_4 = \cfrac38$\\
+Тепер знайдемо середній час життя:
+\begin{eqnarray}
+m_1 &=& 0\\
+m_2 &=& 0\\
+m_3 &=& 1 + \cfrac16 m_1 + \cfrac16 m_3 + \cfrac23 m_4 \\
+m_4 &=& 1 + \cfrac12 m_3 + \cfrac12 m_2 + \cfrac13 m_4
+\end{eqnarray}
+Отримали: $m_3 = m_4 = 6$
+\end{tsk}
+\begin{tsk}
+\begin{tikzpicture}[node distance= 3cm]
+\node[circle,draw,label=below:Дом] (s1) {0};
+\node[circle,draw,label=below:Нічний клуб,right=of s1] (s2) {};
+\node[circle,draw,label=below:Міліція,right=of s2] (s3) {n};
+\path[-]
+(s1) edge (s2) edge (s3)
+;
+\end{tikzpicture}\\
+\begin{eqnarray}
+&h_0 = 1\\
+&h_n = 0\\
+k=1,\ldots,n & h_k = \cfrac12 h_{k+1}+ \cfrac12 h_{k-1}
+\end{eqnarray}
+\begin{equation}
+h_k = 1 - \cfrac kn
+\end{equation}
+\end{tsk}
+\begin{tsk}
+Та сама задача, але скільки часу займе її прогулянка?\\
+Тобто, знайдемо $m_k$
+\begin{eqnarray}
+m_0 &=& 0\\
+m_n &=& 0\\
+m_k &=& 1 + \cfrac12 m_{k+1}  + \cfrac12 m_{k-1}
+\end{eqnarray}
+Розв’язавши це добро можна отримати:
+\begin{equation}
+m_k = k - k^2 + k \cb{n-1}
+\end{equation}
+\end{tsk}
+\subsection{Домашнє завдання}
+\begin{tsk}
+Розв’язати обидві ці задачі, якщо ймовірність піти направо дорівнює $p$, а наліво $q$. Звісно, $p+q=1$.
+\end{tsk}
+\begin{tsk}
+%переписати у Ганни
+\end{tsk}

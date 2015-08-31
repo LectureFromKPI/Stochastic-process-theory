@@ -1,0 +1,141 @@
+\section{Пуасонівський потік та процес} \marginpar{\framebox{14.05.2014}}
+\subsection{Потік Пуассона}
+%графік
+\begin{equation}
+	N(s,t) = \# \set{i:t^\ast_i \in \bb{s,t}}
+\end{equation}
+\begin{enumerate}
+	\item Стаціонарність: 
+	\begin{equation}
+		\forall s,t,h\geq 0: N(s,t) = N(s+h,t+h)
+	\end{equation}
+	\item Відсутність післядії:
+	\begin{equation}
+		s_1\leq t_1 \leq\ldots\leq s_n\leq t_n: N(s_1,t_1),\ldots,N(s_n,t_n) - \text{Незалежні в сукупності}
+	\end{equation}
+	\item Ординарність:
+	\begin{equation}
+		\mP\set{N(o,h)\geq 2} = o(h),h\to 0
+	\end{equation}
+\end{enumerate}
+Якщо виконані ці три умови, то цей потік називається {\bf потік Пуассона}
+%приклади, вставити з лекцій минулого року
+\begin{teor}
+	$\forall s<t, N(s,t) \sim Pois(\la\cdot (t-s)),\la>0$\\
+	$\la$ - деякий параметр, інтенсивність потоку
+\end{teor}
+\begin{teor}
+	$\exists \la>0: \mP\set{N(0,h)=1}=\la\cdot h + o(h),h\to 0$
+\end{teor}
+\begin{proof}
+	\begin{eqnarray}
+		&\mP\set{N(0,h)=0}=P_0(h)
+	\end{eqnarray}
+	\begin{multline}
+		P_0(1) = \Theta = \mP\set{N(0,1)=0}  ={}\\{}= \mP\set{\bigcap\limits_{k=1}^n N\cb{\cfrac{k-1}{n},\cfrac{k}{n}} = 0} = \prod\limits_{k=1}^n \mP\set{N\cb{\cfrac{k-1}{n},\cfrac{k}{n}}= 0} ={}\\{}= \prod\limits_{k=1}^n \mP\set{N\cb{o,\cfrac1n}=0} = P_0^n\cb{\cfrac1n} 
+	\end{multline}
+	\begin{equation}
+		P_0\cb{\cfrac kn} = \prod\limits_{t=1}^k P_0\cb{\cfrac kn} = \Theta^{k/n}		
+	\end{equation}
+	Нехай тепер є $t$ - довільне дійсне додатне.
+	\begin{equation}
+		r_1^- \leq \ldots\leq t \leq \ldots \leq r_1^+
+	\end{equation}
+	Отримали дві послідовності: $\set{r_n^-,n\in \mN},\set{r_n^+,m\in \mN},r_i^-,r_i^+\in\mQ$\\
+	$P_0(t)$ - ймовірність того, що не відбудеться жодної події на проміжку від нуля до t.\\
+	\begin{equation}
+		P_0(r_n^-) \geq P_0(t) \geq P_0(r_n^+)
+	\end{equation}
+	За правилом трьох міліціонерів отримуємо, що 
+	\begin{equation}
+		\liml_{n\to\infty} P_o(t) = \Theta^t
+	\end{equation}
+	Звідси очевидним образом можна отримати, що:
+	\begin{equation}
+		P_o(t) = \Theta^t
+	\end{equation}
+	$0<\Theta<1: \Theta = e^{-\la}$\\
+	Отримали тоді таку формулу:
+	\begin{equation}
+		P_0(t) = e^{-\la t}
+	\end{equation}
+	Тоді 
+	\begin{multline}
+		P_1(h) = {} \\ {} = \mP\set{N(0,h)=1} = 1 - \mP\set{N(0,h)=0} - \mP\set{N(0,h)\geq 2} = 1 - e^{-\la h} - o(h) = {} \\ {} = \mdl{\cfrac{1-e^{-\la h}}{\la h} \xrightarrow[h\to0]{} 1 } = \la \cdot h + o(h) - o(h)
+	\end{multline}
+\end{proof}
+\begin{proof}[Доведення попередньої теореми]
+	\begin{equation}
+		P_k(t) = \mP\set{N(0,h)=k},k\geq 0
+	\end{equation}
+	\begin{multline}
+		P_{k+1}(t+h) = {} \\ {} =  \mP\set{N(0,t+h)=k+1} = \suml_{l=0}^{k+1} \mP\set{N(0,t)=l}\cdot \mP\set{N(t,t+h) = k+1-l} = {} \\ {} = P_{k+1}(t)\cdot P_0(h) + P_k(t)P_1(h) + o(h) = P_{k+1}(t)\cdot\cb{1-\la h + o(h)} + P_k(t)\cb{\la h +o(h)} + o(h) ={} \\ {} = -\la h P_{k+1}(t) + \la h P_k(t) + o(h)
+	\end{multline}
+	Отже, отримали:
+	\begin{equation}
+		\cfrac{P_{k+1}(t+h)-P_{k+1}(t)}{h} = -\la  P_{k+1}(t) + \la P_k(t) + o(1)
+	\end{equation}
+	\begin{equation}
+		h\to0:P_{k+1}' = -\la P_{k+1} + \la P_k
+	\end{equation}
+	Складемо систему рівнянь:
+	\begin{eqnarray}
+		&P_0(t) = e^{-\la t}\\
+		&P_{k+1}' = -\la P_{k+1} + \la P_k\\
+		&P_0(k) = \system{0,k\neq 0\\1,k=0}
+	\end{eqnarray}
+	Зробимо заміну функції: $Q_k(t) = e^{\la t} P_k(t)$\\
+	А зворотною буде заміна: $P_k(t) = e^{-\la t} Q_k(t)$
+	\begin{equation}
+		P_{k+1}'(t) = -\la e^{-\la t} Q_{k+1}(t) + e^{-\la t} Q_{k+1}'(t)
+	\end{equation}
+	А тепер підставимо це добро:
+	\begin{equation}
+		-\la e^{-\la t} Q_{k+1} + e^{-\la t} Q_{k+1}' = -\la e^{-\la t} Q_{k+1} + \la e^{- \la t} Q_k
+	\end{equation}
+	Залишилося після скорочення таке:
+	\begin{equation}
+		Q_{k+1}'(t) = \la Q_k(t)
+	\end{equation}
+	З такими початковими умовами:
+	\begin{eqnarray}
+		&Q_0(t) = 1\\
+		&Q_k(0) = \system{0,k\neq 0\\1,k=0}
+	\end{eqnarray}
+	Починаємо розв’язувати знизу:
+	\begin{eqnarray}
+		&Q_0(t)=1\\
+		&\Rightarrow Q_1'(t) = \la \Rightarrow Q_1(t) = \la t \\
+		& \vdots\nonumber\\
+		&Q_k(t)  = \cfrac{\la^k t^k }{k!}
+	\end{eqnarray}
+	Тоді
+	\begin{equation}
+		P_k(t) = e^{-\la t}\cfrac{\la^k t^k }{k!}
+	\end{equation}
+	Тоді можна легко отримати:
+	\begin{equation}
+		\mP\set{N(s,t) = k } = e^{-\la (t-s)} \cfrac{\la^k\cb{t-s}^k}{k!}
+	\end{equation}
+\end{proof}
+\subsection{Пуассонівський процес}
+%милий графік
+Процес Пуассона визначаємо за такою формулою:
+\begin{equation}
+	N(t) = N\cb{\bb{0,t}}
+\end{equation}
+Потік Пуассона має мати такі властивості:
+\begin{itemize}
+	\item $\mP\set{N(0) = 0}=1$ 
+	\item $N(t) - N(s) \sim Pois\cb{\la\cb{t-s}}$
+	\item прирости $ N(t_1)-N(s_1),\ldots,N(t_n)-N(s_n)$ - незалежні в сукупності, якщо $s_1\leq t_1\ldots\leq s_n\leq t_n$
+	\item $N(t)$ - неперервний з правої сторони та має границі з лівої сторони.
+\end{itemize}
+\paragraph{Математичне сподівання}
+\begin{equation}
+	\mEt{N(t)} = \mEt{N(t) - N(0)} = \mEt{Pois(\la t)} = \la t 
+\end{equation}
+\paragraph{Кореляційна функція}
+\begin{multline}
+	\mEt{\cb{N(s)-\la s}\cb{N(t) - \la t}} ={}\\{}= |s\leq t| = \mEt{\cb{N(s)-\la s}\cb{N(s) - \la s +N(t) - N(s) - \la \cb{t-s}}} ={}\\{}=  \mEt{\cb{N(s)-\la s}\cb{N(s)-\la s}} + \mEt{\cb{N(s)-\la s}\cb{N(t)-N(s)-\la\cb{t-s}}} ={}\\{}= \mDt{Pois(\la s)} + 0 = \la s = \la \min\set{s,t}
+\end{multline}

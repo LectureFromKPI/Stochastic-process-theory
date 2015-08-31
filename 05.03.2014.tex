@@ -1,0 +1,158 @@
+Використаємо теорему \ref{tr:3:1} підставивши в неї такі множини:\marginpar{\framebox{05.03.2014}}
+\begin{eqnarray}
+&H=\mL_2\cb{\Omg,\mC^n}\\
+&L=\set{\tveta=C\vxi+\vd,C\in\mathcal{MAT}\cb{n\times m},\vd\in\mC^n}\\
+&\forall \tveta, \cb{\veta-\hveta,\tveta} = 0 \label{tr:4:1}
+\end{eqnarray}
+З отриманої формули \eqref{tr:3:2} відомо, що:
+\begin{equation}
+\cb{\vxi,\veta} = \tr\mEt{\vxi\veta}
+\end{equation}
+Використаємо це для формули \eqref{tr:4:1}. Отже, $\forall C,\vd$ виконується:
+\begin{eqnarray}
+&\tr \mEt{\cb{\veta-\cb{A\vxi+\vb}}\cb{C\vxi+\vd}^\ast}=0\\
+&\tr \mEt{\veta\vxi^\ast C^\ast-A\vxi\vxi^\ast C^\ast-\vb\vxi^\ast C^\ast + \veta\vd^\ast-A\vxi\vd^\ast - \vb\vd^\ast}=0
+\end{eqnarray}
+\begin{multline}
+\tr\cb{\cb{C_{\vxi,\veta}+\vm_{\veta}\vm_{\vxi}^\ast}C^\ast - A\cb{\iDx+\vm_{\vxi}\vm_{\vxi}^\ast}C^\ast}  -{}\\{}- \tr\cb{b \vm_{\vxi}^\ast C^\ast + \vm_{\veta}\vd^\ast - A\vm_{\vxi}\vd^\ast -\vb\vd^\ast}=0
+\end{multline}
+\begin{eqnarray}
+&\system{C_{\vxi,\veta}+\vm_{\veta}\vm_{\vxi}^\ast-A\cb{\iDx+\vm_{\vxi}\vm_{\vxi}^\ast}-\vb\vm_{\vxi}^*=0\\\vm_{\veta} - A\vm_{\vxi}-\vb=0}\\
+&b=\vm_{\veta} - A\vm_{\vxi}\\
+&C_{\veta,\vxi} - A\iDx=0 \Rightarrow A = C_{\veta,\vxi}\cdot D^{-1}_{\vxi}\\
+&b=\vm_{\veta} - C_{\veta,\vxi}\cdot D^{-1}_{\vxi}\cdot\vm_{\vxi}
+\end{eqnarray}
+Отримали оцінку:
+\begin{equation}
+\hveta = C_{\vxi,\veta}\cdot D^{-1}_{\vxi} \vxi + \vm_{\veta} -  C_{\veta,\vxi}\cdot D^{-1}_{\vxi}\cdot\vm_{\vxi}
+\end{equation}
+Або, якщо спростити:
+\begin{equation}
+\hveta = \vm_{\veta} + C_{\vxi,\veta}D^{-1}_{\vxi}\cb{\vxi-\vm_{\veta}}
+\end{equation}
+\subsection{Дисперсійна матриця похибки}
+Оскільки математичне сподівання оцінки нульове, виникає питання про її дисперсійну матрицю. Обчислимо дисперсійну матрицю похибки:
+\begin{eqnarray}
+&D_{\veta-\hveta} = \mEt{\cb{\veta-\hveta}\cb{\veta-\hveta}^\ast}\\
+&D_{\hveta} = \mEt{\cb{ \vm_{\veta} + C_{\vxi,\veta}D^{-1}_{\vxi}\cb{\vxi-\vm_{\veta}}}\cb{ \vm_{\veta} + C_{\vxi,\veta}D^{-1}_{\vxi}\cb{\vxi-\vm_{\veta}}}^\ast}
+\end{eqnarray}
+%З цим потрібно щось придумати, але ідей в мене немає
+\begin{multline}
+D_{\veta-\hveta} = \mEt{\cb{\veta-\vm_{\veta}}\cb{\veta-\vm_{\veta}}^\ast} -{}\\{}- \mEt{\cb{\veta-\vm_{\veta}}\cb{C_{\vxi,\veta}D^{-1}_{\vxi}\cb{\vxi-\vm_{\veta}}^\ast}} - \mEt{C_{\vxi,\veta}\iDx^{-1}\cb{\vxi-\vm_{\vxi}}\cb{\veta-\vm_{\veta}}^\ast} +{}\\{}+ \mEt{C_{\vxi,\veta}\iDx^{-1}\cb{\vxi-\vm_{\vxi}}\cb{\vxi-\vm_{\vxi}}^\ast\cb{D^{-1}_{\vxi}}^\ast C^\ast_{\vxi,\veta}}
+\end{multline}
+\begin{equation}
+D_{\veta-\hveta} = D_{\veta} - C_{\veta,\vxi}D^{-1}_{\vxi} C_{\vxi,\veta}
+\end{equation}
+\begin{multline}
+\mEt{\nr{\veta-\hveta}^2} = \mEt{\mdl{\eta_1-\hat{\eta}_1}^2}+\ldots+\mEt{\mdl{\eta_n-\hat{\eta}_n}^2} ={}\\{}=\mDt{\eta_1-\hat{\eta}-1} + \ldots + \mDt{\eta_n + \hat{\eta}_n} = \tr\cb{D_{\eta}-C_{\veta,\vxi}D^{-1}_{\veta}C_{\vxi,\veta}}
+\end{multline}
+\section{Генератриси та їх застосування до випадкової кількості випадкових змінних. Гіллясті процеси Гальтона-Ватсона}
+Нехай в нас є випадкова величина $\xi$.\\
+\begin{tabular}{c|c|c|c|c|c}
+$\xi$ & 0 & 1 & $\ldots$ & n & $\ldots$\\
+\hline
+$\mP$ & $p_0$ & $p_1$ & $\ldots$ & $p_n$ & $\ldots$
+\end{tabular}\\
+\textbf{Генератриса} випадкової величини $\xi$ це функція $G_\xi(z) = \suml_{k=0}^\infty p_k z^k$
+\subsection{Властивості генератриси}
+\begin{enumerate}
+\item $G_\xi(1)=1$;
+\item При $z\in\bb{0,1}$ ряд збігається рівномірно;
+\item $G_\xi(z)\geq 0$ монотонно не спадна і опукла в широкому сенсі;
+\item $G_\xi'(1)= \mEx$;
+\item $G_\xi(z)=\mEt{z^\xi}$;
+\item Якщо $\xi\perp\eta$, то $G_{\xi+\eta}=\mEt{z^{\xi+\eta}} = \mEt{z^\xi}\mEt{z^{\eta}} = G_\xi(z)\cdot G_\eta(z)$.
+\end{enumerate}
+Нехай є послідовність однаково розподілених величини $\xi_1,\ldots,\xi_n,\ldots\in\set{0,\ldots,1}$\\
+$\nu$ є незалежна від них і також розподілена на $\set{0,\ldots,n,\ldots}$\\
+Розглянемо $\Theta = \suml_{i=1}^\nu\xi_i$\\
+\begin{multline}
+G_{\Theta}(z) = \mEt{z^\Theta} = \mEt{\mnEt{z^\Theta}{\nu}} = \mEt{\mnEt{z^{\xi_1+\ldots+\xi_\nu}}{\nu}} ={}\\{}= \mEt{G^\nu_\xi(z)} = G_\nu\cb{G_\xi(z)}
+\end{multline}
+\begin{exs}
+$\xi\sim Pois\cb{\la}$ - кількість студентів. \\
+Студент здає іспит з ймовірністю $p$ і не здає з ймовірністю $1-p$.\\
+Потрібно довести, що кількість тих, хто склад іспит також розподілена $\sim Pois\cb{\la p}$. \\
+$\eta = \eps_1+\ldots+\epsilon_\xi$, де $\eps_i$ це одиниця, якщо студент іспит склав і нуль, якщо не склав.\\
+$G_\xi(z) = e^{\la(z-1)}$\\
+$G_\eps(z) = pz+1-p$\\
+$G_\eta(z) = G_\xi(G_\eps(z)) = e^{\la\cb{pz+1+p-1}} = e^{\la p\cb{z-1}}$
+\end{exs}
+\subsection{Гіллясті процеси Гальтона-Ватсона}
+\begin{description}
+\item[Нульовий крок.] В нас є одна істота;
+\item[Перший крок.] Ця істота народила $\xi^{(1)}$ нащадків і померла;
+\item[Другий крок.] Кожна з цих істот-нащадків народжує ще нащадків $\xi^{(2)} = \suml_{i=1}^{\xi^{(1)}} \nu_i$, $\nu_i$ - незалежні і розподілені так само, як $\xi_1$.
+\item[$\vdots$]
+\end{description}
+Введемо подію "Виродження" - для деякого кроку $n$ наше $\xi^{(n)}=0$.\\
+Потрібно знайти ймовірність такої події.\\
+Давайте позначимо $G_i(z)$ - генератриса кількості нащадків.\\
+$G_1(z)$ - генератриса чисельності популяції на першому кроці. \\
+$G_1(z) = G(z)$\\
+$G_1(z) = G(G(z))$\\
+$G_n(z) =  \underbrace{G(G(\ldots(z)\ldots)}_{n\text{ штук}}$\\
+$\mP\set{\text{Виродження}} = \mP\set{\bcupl_{i=1}^\infty \text{на n-тому кроці нікого немає}}$\\
+Ця послідовність подій, яка є неспадною. \\
+$\liml_{n\to\infty}\mP\set{\text{на n-тому кроці нікого немає}} = \liml_{n\to\infty} G_n(0)=?$\\
+Розглянемо деякі очевидні властивості цієї послідовності:
+\begin{enumerate}
+\item $\forall n\in\mN:G_n(0)\leq G_{n+1}(0)$;
+\item $\forall n\in\mN:G_n(0)\leq 1$;
+\end{enumerate}
+Отже, за теоремою Вейерштраса існує границя.\\
+Позначимо $\liml_{n\to\infty} G_n(0) = x$\\
+\begin{eqnarray}
+&G\cb{\liml_{n\to\infty} G_n(0)} = G(x)\\
+&G\cb{\liml_{n\to\infty} G_n(0)} = \liml_{n\to\infty} G(G_n(0)) = \liml_{n\to\infty} G_{n+1}(0) = x
+\end{eqnarray}
+Отримали рівняння: $G(z) = z$
+На жаль, в цього рівняння може бути кілька розв’язків і ми не будемо знайти, який саме нам потрібний. Тому нам необхідний засіб знайти кількість розв’язків. Зазначимо, що хоча б один розв’язок точно є, оскільки границя %вставити посилання
+задовольняє рівняння та існує.\\
+Можливі ситуації
+%Тут були красиві малюнки, за бажанням можна намалювати
+\begin{itemize}
+\item Є лише один розв’язок;
+\item Нескінченно багато розв’язків;
+\item Два розв’язки.
+\end{itemize}
+Інші випадки неможливі.\\
+%красивий малюнок
+Генератриса має бути випуклою, а якщо розв’язків більше за два, з’являються точки перелому.\\
+\begin{tver}
+$\liml_{n\to\infty}G_n(0)=x$ - це найменший корінь рівняння $G(z)=z$ на проміжку $\bb{0,1}$.
+\end{tver}
+\begin{proof}
+Нехай $y$ - це найменший розв’язок. Отже, $o\leq y$.\\
+\begin{eqnarray*}
+&G(0)\leq G(y)=y\\
+&G_2(0)\leq G(y) = y\\
+&\vdots
+\end{eqnarray*}
+Отже, $\liml_{n\to\infty} G_n(0)\leq y$.\\
+Але ми знаємо, що ця границя також є розв’язком рівняння $G(z)=z$. \\
+Таким чином, $\liml_{n\to\infty} G_n(0)=y$
+\end{proof}
+\begin{teor}
+Ймовірність виродження гіллястого процесу Гальтона-Ватсона дорівнює найменшому невід’ємному розв’язку рівняння $G(z)=z$.
+\end{teor}
+\begin{exs}
+\begin{tabular}{c|c|c}
+0 & 1 & 2\\
+\hline
+$\frac12$ & 0 & $\frac12$
+\end{tabular}
+$G(z) = \cfrac{z^2+1}2$\\
+$\cfrac{z^2+1}2 = z \Rightarrow z =1$\\
+Отже, виродження з одиничною ймовірністю.
+\end{exs}
+\begin{exs}
+\begin{tabular}{c|c|c}
+0 & 1 & 3\\
+\hline
+$\frac12$ & 0 & $\frac12$
+\end{tabular}
+$G(z) = \cfrac{z^3+1}2$\\
+$\cfrac{z^3+1}2 = z \Rightarrow z =\min\set{1,\cfrac{-1+\sqrt5}2} = \cfrac{-1+\sqrt5}2$\\
+Отже, виродження з такою дивною ймовірністю.
+\end{exs}

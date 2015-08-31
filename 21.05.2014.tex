@@ -1,0 +1,122 @@
+\subsection{Час між подіями}\marginpar{\framebox{21.05.2014}}
+Введемо нові величини, які будуть позначати час подій $\set{\tau_n,n\in\mN}$ - \textit{inter-arrival times}.
+\begin{teor}
+	$\set{\tau_n,n\in\mN}$ - незалежні та розподілені за $Exp(\la)$.
+\end{teor}
+\begin{proof}
+	Доведемо лише частину з цієї великої теореми.
+\end{proof}
+\begin{teor}[Еквівалентне формулювання]
+	Нехай $\set{\tau_i,i\in\mN}$ - послідовність незалежних експоненціально $\cb{Exp\cb{\la}}$ розподілених випадкових величин. 	За ними побудуємо процес стрибків у заданий час.\\
+	Тоді такий процес буде Пуассонівським.
+\end{teor}
+\begin{proof}
+	Назвемо побудований процес $N(t)$. Тоді 
+	\begin{equation}
+		N(t) = \max \set{n\geq0: T_n\leq t},\quad T_n = \suml_{i=1}^n t_i,T_0=0
+	\end{equation}
+	Подивимося, які властивості явно виконуються:
+	\begin{enumerate}
+		\item $N(0)=0$
+		\item Неперервність справа і має стрибки зліва.
+	\end{enumerate}
+	Головне довести інші властивості.\\
+	Розглянемо $0\leq s_1\leq t_1\leq\ldots\leq s_k\leq t_k$ і прирости: $N(t_1)-N(s_1),\ldots,N(t_k)=N(s_k)$. Необхідно довести їх незалежність та правильний розподіл. Отже, потрібно довести, що:
+	\begin{equation}
+		\mP\set{\vect{ N(t_1)-N(s_1) \\\vdots\\ N(t_k)=N(s_k) } = \vect{\Delta_1\\\vdots\\\Delta_k}} = \cfrac{e^{-\la\cb{t_1-s_1}} \cb{\la\cb{t_1-s_1}}^{\Delta_1}}{\Delta_1!} \cdot \cfrac{e^{-\la\cb{t_k-s_k}} \cb{\la\cb{t_k-s_k}}^{\Delta_k}}{\Delta_k!} 
+	\end{equation}
+	Ми хочемо це довести, але не будемо. А доведемо для $k=1$, а ще для простоти покладемо $s_1=0$.\\
+	Отже, ми хочемо довести таку річ:
+	\begin{equation}
+		\mP\set{N(t)=\Delta} = e^{-\la t} \cfrac{\cb{\la t}^\Delta}{\Delta!}
+	\end{equation}
+	\begin{multline}
+		\mP\set{N(t)=\Delta} = \mP\set{N(t)\geq\Delta} - \mP\set{N(t)\geq\Delta+1} = \mP\set{T_\Delta\leq t} -{}\\{}- \mP\set{T_{\Delta+1}\leq t} = \mP\set{\tau_1 + \ldots + \tau_\Delta\leq t} - \mP\set{\tau_1 + \ldots + \tau_{\Delta+1}\leq t}
+	\end{multline}
+	$\tau_1,\ldots,\tau_\Delta\sim Exp(\la)$ тоді\\
+	$\tau_1+\ldots+\tau_\Delta\sim G(\Delta,\la)$
+	Отже, отримуємо таку щільність розподілу:
+	\begin{equation}
+		f_{\tau_1+\ldots+\tau_\Delta} (x) = \system{ \cfrac{\la^\Delta}{\cb{\Delta-1}!} x^{\Delta-1} e^{-\la x},x>0 \\ 0,x\leq 0}
+	\end{equation}
+	Тоді:
+	\begin{equation}
+		\mP\set{\tau_1+\ldots+\tau_\Delta\leq t} = \intl_0^t \cfrac{\la^\Delta}{\cb{\Delta-1}!} x^{\Delta-1} e^{-\la x} \dx = I_1
+	\end{equation}
+	Для другого доданка те саме:
+	\begin{equation}
+		\mP\set{\tau_1+\ldots+\tau_\Delta\leq t} = \intl_0^t \cfrac{\la^{\Delta+1}}{\cb{\Delta}!} x^{\Delta} e^{-\la x} \dx = I_2
+	\end{equation}
+	Віднімемо їх:
+	\begin{equation}
+		\mP\set{\tau_1 + \ldots + \tau_\Delta\leq t} - \mP\set{\tau_1 + \ldots + \tau_{\Delta+1}\leq t} = I_1 - I_2
+	\end{equation}
+	Давайте трошки розважимося з цими інтегралами:
+	\begin{multline}
+		I_1 - I_2 = \intl_0^t \cfrac{\la^\Delta}{\cb{\Delta-1}!} x^{\Delta-1} e^{-\la x} \dx -  \intl_0^t \cfrac{\la^{\Delta+1}}{\cb{\Delta}!} x^{\Delta} e^{-\la x} \dx ={}\\{}=  \cfrac{\la^\Delta}{\cb{\Delta-1}!} \intl_0^t x^{\Delta-1} e^{-\la x} \dx - \cfrac{\la^{\Delta+1}}{\cb{\Delta}!} \cb{ \left. -\cfrac{x^\Delta}{\la} e^{-\la x} \right|_0^t + \cfrac1\la \intl_0^t e^{-\la x} \Delta x^{\Delta-1} \dx}	 = {} \\ {} = \cfrac{\la^\Delta}{\cb{\Delta-1}!} \intl_0^t x^{\Delta-1} e^{-\la x} \dx +\cfrac{\la^\Delta}{\Delta!} t^\Delta e^{-\la t} - \cfrac{\la^\Delta}{\cb{\Delta-1}!} \intl_0^t e^{-\la x} x^{\Delta-1} \dx = {} \\ {} =  \cfrac{\la^\Delta}{\Delta!} t^\Delta e^{-\la t} = \mP\set{Pois(\la t) = \Delta}
+	\end{multline}
+\end{proof}
+\section{Елементи актуарної математики}
+\textbf{Актуарна математика} - це математика страхових компаній. \\
+Під цими елементами буде основна та найбільш проста модель - модель Крамера-Лундберга, яка виникла у 20-30-тих роках 20-того сторіччя.\\
+Логічно припустити, що страхові випадки утворюють потік Пуассона з деякою інтенсивністю $\la$. І в нас виникає такий собі \textbf{процес ризику} - процес, який описує поточний капітал страхової компанії.
+\begin{equation}
+	U(t) = u + ct - \suml_{i=1}^{N(t)} X_i
+\end{equation}
+с - компанія отримує в одиницю часу. $X_i$- claims, страхові виплати - деякі незалежні, однаково розподілені випадкові величини такі, що $X_i \geq 0$\\
+Банкрутство(In) - це $\set{\exists t\geq 0: U(t)<0}$ на нескінченному часовому горизонті. \\
+Введемо ймовірність банкрутства:
+\begin{equation}
+	\psi(u)= \mP\set{\exists t\geq 0: U(t)<0}
+\end{equation}
+Знайдемо $\psi(u)$, $u$ - початковий капітал.
+\begin{multline}
+	\mEt{U(t)} = u + ct - \mEt{\suml_{i=1}^{N(t)} X_i} = {}\\{}= u + ct - \mEt{\mEt{\suml_{i=1}^{N(t)}  X_i\diagup_{N(t)=k}}}  = u + ct - \mEt{N(t)\cdot \mEt{X}}  ={}\\{}= u + ct - \mEt{N(t)}\cdot \mEt{X} = u + ct - \la m t, \quad m = \mEt X 
+\end{multline}
+Перепишемо цю формулу у такому вигляді:
+\begin{equation}
+	\mEt{U(t)} = u + \cb{c-\la m}t,\quad t\geq 0
+\end{equation}
+Якщо $c\leq\la m$, то $\forall u:\quad\psi(u)=1$\\
+Якщо $c>\la m$, то $\forall u:\quad\psi(u)<1$\\
+Умова $c>\la m$ називається \textbf{умова чистого прибутку} або в англомовній літературі "\textbf{NPC(Net Profit Condition)}".\\
+Умову банкрутства можна переписати так:
+\begin{multline}
+In = \set{\inf\limits_{t\geq 0} U(t)<0} = \set{u + \inf\limits_{t\geq 0} \cb{ct - \suml_{i=1}^{N(t)} X_i} < 0 } ={} \\ {} =  \set{u + \inf\limits_{n\in \mN} \cb{c T_n + \suml_{i=1}^n X_i } < 0 }  = {} \\ {}= \set{u +\inf\limits_{n\in\mN} \suml_{i=1}^n \cb{c\tau_i - X_i}<0} = \set{\inf\limits_{n\in\mN} \suml_{i=1}^n \cb{c\tau_i - X_i} < - u}
+\end{multline}
+$\set{\tau_i,i\in\mN}$ - незалежні $Exp(\la)$\\
+Згідно до ЗВЧ 
+\begin{equation}
+	\cfrac{\suml_{i=1}^n \cb{c\tau_i-X_i}}{n} \xrightarrow[n\to\infty]{}\mEt{c\tau_i - X_i} = \cfrac c\la - m
+\end{equation}
+Отже, якщо $\cfrac c\la - m<0$, то $\cfrac{\suml_{i=1}^n \cb{c\tau_i-X_i}}{n}$ прямує до деякого від’ємного числа і тоді $\suml_{i=1}^n \cb{c\tau_i-X_i}\to-\infty$.\\
+Для рівності довести складно, але повірте - це щира правда!\\
+Якщо $c<\la m$, то $\cfrac{\suml_{i=1}^n \cb{c\tau_i-X_i}}{n}$ буде прямувати до якогось додатного числа і $\suml_{i=1}^n \cb{c\tau_i-X_i}\to+\infty$
+\section{Інтегральне рівняння для ймовірності небанкрутства}
+\begin{equation}
+	\phi (u) = 1 - \psi (u)
+\end{equation}
+\begin{teor}
+Якщо виконано умову NPC, то ймовірність небанкрутства $\phi(u)$ задовольняє рівнянню:
+\begin{equation}
+	\phi(u) = \phi(0) + \cfrac\la c \intl_0^u \phi(u-t) \overline{F}_x(t)\dt
+\end{equation}
+де $\overline{F}_x (t)= 1 - F_x(t) = \mP\set{x_i\geq t}$
+\end{teor}
+\begin{proof}
+\begin{multline}
+	\phi(x) = \mP\set{x_1 - c\tau_1\leq u, \sup\limits_{n\in \mN} \suml_{i=2}^n \cb{x_i-c\tau_i}\leq u +c\tau_1 - x_1}  = {}\\{}= \mEt{\mEt{\mathbf{I}\set{x_1 - c\tau_1\leq u, \sup\limits_{n\in \mN} \suml_{i=2}^n \cb{x_i-c\tau_i}\leq u +c\tau_1 - x_1}\diagup_{\cb{\tau_1,x_1}}}} = {} \\ {} = \mEt{   \mEt{\mathbf{I}\set{x_1-c\tau_1\leq u}\cdot\mathbf{I}\set{\sup\limits_{n\in \mN} \suml_{i=2}^n \cb{x_i-c\tau_i}\leq u +c\tau_1 - x_1}\diagup_{\cb{\tau_1,x_1}}}  } = {} \\ {} = \mEt{\mathbf{I}\set{x_1-c\tau_1\leq u}\cdot \mEt{\mathbf{I}\set{\sup\limits_{n\in \mN} \suml_{i=2}^n \cb{x_i-c\tau_i}\leq u +c\tau_1 - x_1}\diagup_{\cb{\tau_1,x_1}}}} = {} \\ {} = \mEt{\mathbf{I}\set{x_1-c\tau_1\leq u}\cdot \mP\set{\sup\limits_{n\in \mN} \suml_{i=2}^n \cb{x_i-c\tau_i}\leq u +c\tau_1 - x_1\diagup_{\cb{\tau_1,x_1}}}} = {} \\ {} = \mEt{\mathbf{I}\set{x_1-c\tau_1\leq u}\cdot \phi\cb{u+c\tau_1-x_1}} = {} \\ {} = \intl_0^\infty \intl_0^\infty f_x(x) \la e^{-\la t} \mathbf{I}\set{x_1-c\tau_1\leq u} \phi\cb{u+ct-x}\dx\dt = {}\\ {} =\intl_0^\infty \dt \intl_0^{u+ct} f_x(x) \la e^{-\la t} \mathbf{I}\set{x_1-c\tau_1\leq u} \phi\cb{u+ct-x}\dx
+\end{multline}
+Отже, ми отримали таке інтегральне рівняння:
+\begin{equation}
+	\phi(u) =  \la \intl_0^\infty \dt \intl_0^{u+ct} f_x(x)e^{-\la t} \mathbf{I}\set{x_1-c\tau_1\leq u} \phi\cb{u+ct-x}\dx
+\end{equation}
+Робимо заміну $u+ct=s:t\to s;t=\cfrac{s-u}c$.
+\begin{multline}
+	\phi(u) = \cfrac\la c \intl_u^\infty \dif s \intl_0^s f(x) e^{-\la\cfrac sc} e^{\la \cfrac uc} \phi(s-x)\dx = {} \\{} = \cfrac\la c e^{\la \frac uc} \intl_{s=u}^\infty \intl_{x=0}^\infty f(x) e^{-\la \frac sc} \phi(s-x) \dx\dif s
+\end{multline}
+\begin{multline}
+	\phi'(u) = \cfrac{\la^2}{c^2} e^{\la\frac uc} \intl_{s=u}^\infty \intl_{x=0}^\infty f(x) e^{-\la \frac sc} \phi(s-x) \dx\dif s -{}\\{} - \cfrac\la c e^{\la\frac uc} \intl_0^u f(x) e^{-\la \frac uc} \phi\cb{u-x} \dx = \cfrac\la c \phi(u) - \cfrac\la c \intl_0^u f(x) \phi(u-x) \dx
+\end{multline}
+Ця штука має назву \textbf{інтегро-диференціальне рівняння для небанкрутства}. Загалом, нічого ідейного далі немає, а просто штучні перетворення. Залишається лише повірити.
+\end{proof}

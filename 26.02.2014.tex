@@ -1,0 +1,162 @@
+\section{Випадкові вектори}\marginpar{\framebox{26.02.2014}}
+\textbf{Випадковий вектор} - це набір з $n$ випадкових величин, які задані на спільному ймовірнісному просторі $\Omg$.  \\
+$\vxi = \vect{\xi_1\\\xi_1\\\vdots\\\xi_n}$\\
+$\xi_i:\Omg\to\mR$,$\xi_i$ - вимірна відносно обох $\sigma$-алгебр $\iF$, $\iB\cb{\mR}$\\
+Але це означення досить погане, тому введемо інше:\\
+$\vxi$ - це випадкова величина, яка $\vxi:\Omg\to\mR^n$, яка вимірна відносно $\sigma$-алгебр $\iF$ та $\iB\cb{\mR^n}$. \\
+\begin{teor}
+Два попередні означення еквівалентні.
+\end{teor}
+\begin{proof}
+Нехай виконується:
+\begin{equation*}
+\vxi:\cb{\Omg,\iF}\xrightarrow{\text{вим.}}\cb{\mR^n,\iB\cb{\mR^n}}
+\end{equation*}
+Введемо функцію: $\pi:\mR^n\to\mR$ така, що $\pi_i(\vx) = x_i$\\
+$\xi_i(\omg) = \pi_i\cb{\vxi(\omg)} = \pi \circ \vxi$ - вимірна, як композиція вимірних.\\
+Залишилося довести, що є перехід з першого в друге.\\
+Про вектор відомо лише те, що кожна його координата є вимірною функцією. \\
+Потрібно довести, що $\vxi(\omg)$ вимірна відносно $\iF$ та $\iB\cb{\mR^n}$.\\
+Тобто, потрібно довести, що 
+\begin{equation}
+\forall B\in \iB\cb{\mR^n}:\vxi^{-1} \cb{B} \in\iF
+\end{equation}
+Скористаємося методом гарних множин. Візьмемо такі множин з $\iB\cb{\mR^n}$, для яких $\vxi^{-1} \cb{B} \in\iF$. Назвемо цю множину множин $C$. Очевидно, що $C\subset \iB$. Також нам відомо, що $B_1\times B_2\times\ldots\times B_n\in C,B_i\in\iB\cb{\mR},\forall i$\\
+Доведемо це.\\
+$\underbrace{\vxi^{-1}\cb{B_1\times B_2\times\ldots\times B_n}}_{\text{брус}} = \set{\omg\in\Omg:\vxi(\omg) \in B_1\times B_2\times\ldots\times B_n} =$ \\ $= \set{\omg\in\Omg:\forall i\in\set{1,\ldots,n} \xi_i \in B_i}  =\bcapl_{i=1}^n \set{\omg\in\Omg:\xi_i(\omg)\in B_i} \in \iF$ \\
+Чи можна стверджувати, що $\mR^n\in C$?
+\begin{equation}
+\vxi^{-1}\cb{\mR^n} = \Omg\in\iF
+\end{equation}
+Отже, таки так. \\
+\begin{equation}
+B_1,B_2,\ldots\in C\Rightarrow \bcupl_{i=1}^\infty B_i \in C
+\end{equation}
+Доведемо це:
+\begin{equation}
+\vxi^{-1}\cb{\bcupl_{i=1}^\infty B_i} = \bcupl_{i=1}^\infty \vxi^{-1}\cb{B_i} \in C
+\end{equation}
+Нам залишилася необхідною лише одна властивість:
+\begin{equation}
+B\in C\Rightarrow \overline B \in C
+\end{equation}
+І це також доведемо, хоча й очевидно, наче:
+\begin{equation}
+\vxi^{-1}\cb{\overline B} = \overline{\vxi^{-1}\cb{B}}\in\iF
+\end{equation}
+З отриманих властивостей можна визначити, що наша $C$ є $\sigma$-алгеброю та містить всі бруси. Отже, вона містить і $\sigma$-алгебру породжену брусами, а це є $\iB\cb{\mR^n}$. Отже, $\iB\set{\mR^n}\subset C$. Отримали, що $C=\iB\cb{\mR^n}$.
+\end{proof}
+\section{Характеристики випадкових векторів}
+$\vxi = \vect{\xi_1\\\xi_2\\\vdots\\\xi_n}$
+\subsection{Математичне сподівання}
+$\mEt{\vxi} = \vect{\mEt{\xi_1}\\\mEt{\xi_2}\\\vdots\\\mEt{\xi_n}}$
+\subsection{Кореляційна матриця}
+Також має назву \textbf{коваріаційної} або \textbf{дисперсійної матриці}.
+\begin{equation}
+\iDx = \mEt{\cb{\vxi-\mEvx}\cb{\vxi-\mEvx}^\ast}
+\end{equation}
+Властивості цієї матриці:
+\begin{enumerate}
+\item $\iDx^\ast = \iDx$
+\begin{proof}
+$\iDx^\ast = \cb{\mEt{\cb{\vxi-\mEvx}\cb{\vxi-\mEvx}^\ast}}^\ast = \mEt{\cb{\vxi-\mEvx}^{\ast,\ast}\cb{\vxi-\mEvx}^\ast}=\iDx$
+\end{proof}
+\item \iDx - невід’ємно визначена.
+\begin{proof}
+$\cb{\iDx\vc,\vc} = \cb{\mEt{\vxi_0\vxi_0^\ast}\vc,\vc} = \mEt{\vxi_0^\ast\vc,\vxi_0\vc}\geq 0$
+\end{proof}
+\begin{war}
+Подумати про те, коли буде досягнута рівність.
+\end{war}
+\item Будь-яка матриця, яка задовольняє дві попередні властивості обов’язково є кореляційною матрицею деякого вектору. 
+\end{enumerate}
+Також можна ввести формулу \textbf{взаємнодисперсійної матриці}:
+\begin{equation}
+C_{\vxi,\veta} = \mEt{\cb{\vxi - \mEx}\cb{\veta-\mEe}}
+\end{equation}
+\begin{enumerate}
+\item $C_{\vxi,\veta} = C_{\vxi,\veta}^\ast$
+\end{enumerate}
+\begin{exs}
+Розглянемо деяку матрицю: \\
+$t_1,\ldots,t_n\geq0$\\
+Розглянемо матрицю їх локальних мінімумів:
+\begin{equation*}
+||\min\cb{t_i,t_j}||_{i,j} = \begin{pmatrix}
+t_1 & \min\cb{t_1,t_2} & \ldots \\
+\min\cb{t_2,t_1} & t_2 & \ldots \\
+\vdots &\vdots & \vdots
+\end{pmatrix}
+\end{equation*}
+$H$ - гільбертовий простір. $x_1,\ldots,x_n\in H$
+\begin{equation*}
+G = \begin{pmatrix}
+(x_1,x_1) & (x_1,x_2) & \ldots & (x_1,x_n) \\
+(x_2,x_1) & \ldots\\
+\vdots & \vdots & \vdots & \vdots \\
+(x_n,x_1) & \ldots
+\end{pmatrix}
+\end{equation*}
+Це \textbf{матриця Грама}, яка є ермітова та невід’ємно визначена.\\
+Спробуємо побудувати деякий гільбертовий простір такий, щоб в ньому було легко знаходити скалярні добутки:\\
+%замість 
+Візьмемо простір $\mL_2\cb{0,+\infty}:x_i(t) = I_{\bb{0,t_i}}(t)$
+\begin{equation*}
+\cb{x_i,x_j} = \intzi I_{\bb{0,t_j}} I_{\bb{0,t_i}} \dt = \min\cb{t_i,t_j}
+\end{equation*}
+Отже, матриця справді кореляційна.
+\end{exs}
+\subsection{Перетворення \iDx та $C_{\vxi,\veta}$ при афінних перетвореннях}
+Задані$\vxi,\iDx$ та афінне перетворення:
+\begin{equation}
+\veta = A\vxi + \vb
+\end{equation}
+Спробуємо знайти, як зміниться дисперсійна матриця при такому афінному перетворені:
+\begin{multline}
+\iDe = \mEt{\cb{\veta-\mEve}\cb{\veta-\mEve}^\ast} ={}\\{}= \mEt{\cb{A\vxi + \vb+\mEt{A\vxi + \vb}}\cb{A\vxi + \vb+\mEt{A\vxi + \vb}}^\ast} ={}\\{}= \mEt{\cb{A\vxi+\mEvx}\cb{A\vxi+\mEvx}^\ast} = A\iDx A^\ast
+\end{multline}
+\subsection{Гільбертовий простір $\mL_2\cb{\Omg,\mR^n}$}
+Введемо такий гільбертовий простір:
+\begin{equation}
+\mL_2\cb{\Omg,\mC^n} = \set{\vxi:\cb{\Omg,\iF}\to\cb{\mC^n,\iB\cb{\mC^n}}:\mEt{|\xi_i|^2}<\infty,\forall\ifon}
+\end{equation}
+З нерівності Коші-Буняковського отримуємо, що:
+\begin{equation}
+\mEt{\xi_i\bar{\xi}_j}\leq \sqrt{\mEt{|\xi_i|^2}}\sqrt{\mEt{|\xi_j|^2}}< \infty
+\end{equation}
+Знайдемо в такому просторі скалярний добуток:
+\begin{equation}\label{tr:3:2}
+\cb{\vxi,\veta} = \mEt{\cb{\vxi,\veta}_{\mR^n}} = \mEt{\veta^\ast \vxi} = \mEt{\tr \cb{\vxi,\veta^\ast}}
+\end{equation}
+\section{Оптимальне лінійне оцінювання випадкових векторів}
+$\vxi,\veta$ - випадкові вектори.\\
+$\vxi\in\mL_2\cb{\Omg,\mC^m},\veta\in\mL_2\cb{\Omg,\mC^n}$\\
+Вектор $\vxi$ спостерігається, а потрібно знайти оцінку $\hveta$. \\
+Будемо шукати оцінку в такому вигляді: $\hveta = A\vxi +\vb$.\\
+Ми розглядаємо критерій мінімуму середньоквадратичного відхилення:
+\begin{equation}
+\min\set{\mEt{\nr{\veta-\hveta}^2}}\\
+\end{equation} 
+Шукаємо $A\in\mathcal{MAT}_{n\times m},\vb\in \mC^n$, щоб 
+\begin{equation}
+\mEt{\nr{\veta - \cb{A\vxi+\vb} }^2} = \min\set{\mEt{\nr{\veta - \cb{C\vxi-\vd}}^2}}
+\end{equation}
+\begin{teor}[Лема про перпендикуляр у гільбертовому просторі]\label{tr:3:1}
+$H$ - гільбертовий простір. $L\subset H$ - підпростір. $y\not\in L$.\\
+Необхідно знайти таку точку $x_0\in L$, що:
+\begin{equation*}
+\nr{\overrightarrow{y-x_0}} \leq \nr{\overrightarrow{y-x}},\forall \vx\in L
+\end{equation*}
+Також необхідно опустити якимось чином перпендикуляр. Тобто:
+\begin{equation*}
+\overrightarrow{y-x_0} \perp \vx,\forall \vx\in L
+\end{equation*}
+Кожна ця задача має єдиний розв’язок і до того ж, вони однакові.
+\end{teor}
+\begin{proof}
+$H = L \dotplus L^\perp$ - очевидний факт.\\
+Це позначає, що $\forall \vy\in H: \exists! \vx_0\in L,\vx_1\in L^\perp \vy=\vx_0+\vx_1$\\
+Очевидно, що це перпендикуляр. А оскільки розклад єдиний, то єдиність також гарантована.\\
+$\nr{\vy-\vx}^2 = (\vy-\vx,\vy-\vx) = (\vy-\vx_0+\vx_0-\vx,\vy-\vx_0+\vx_0-\vx) = (\vy-\vx_0,\vy-\vx_0) + (\vx_0-\vx,\vx_0-\vx)+(\vy-\vx_0,\vx_0-\vx)+(\vx_0-\vx,\vy-\vx_0) = (\vy-\vx_0,\vy-\vx_0) + (\vx_0-\vx,\vx_0-\vx)$\\
+Отже, в точці $\vx_0$ досягається мінімальна відстань. А єдиність знову гарантована.
+\end{proof}

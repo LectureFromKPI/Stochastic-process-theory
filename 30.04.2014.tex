@@ -1,0 +1,144 @@
+\section{Просунуті задачі вінерівського процесу} \marginpar{\framebox{30.04.2014}}
+\subsection{Траєкторії вінерівського процесу}
+\subsubsection{Вінерівський процес має неперервні траєкторії майже напевно}
+Тобто, стверджується, що:
+\begin{equation}
+\mP\set{w(t) \in C\left[0;+\infty\right)}=1
+\end{equation}
+Маючи систему скінченно вимірних розподілів, неможливо визначити, чи будуть траєкторії майже напевно неперервними.\\
+\begin{exs}
+Розглядаємо два процеси: $X(t),Y(t),t\in\bb{0,1}$\\
+$X(t) \equiv 0$ - неперервна траєкторія.\\
+$Y(t) = \system{0,t\neq \tau\\ 1, t= \tau},\tau\sim U\cb{\bb{0,1}}$\\
+Ці розподіли випадково рівні. 
+\begin{multline*}
+\mP\set{Y(t_1)=0,\ldots,Y(t_n)=0} ={}\\{}= \mP\set{\tau\in\cb{t_1,\ldots,t_n}} = 0 ={}\\{}= \mP\set{X(t_1)=0,\ldots,X(t_n)=0},\forall n,\set{t_1,\ldots,t_n}\in\bb{0,1}
+\end{multline*}
+\end{exs}
+Після довгих та впевнених доведення невідомо кому невідомо кого, отримали таке формулювання:
+\begin{teor}
+Існує версія вінерівського процесу з неперервними траєкторіями.
+\end{teor}
+Розглянемо деякий допоміжний факт:
+\begin{teor}[Колмогорова про неперервність траєкторії]
+$X(t)$ - випадковий процес. Просто випадковий процес.\\
+І виконується така умова:
+\begin{equation*}
+\exists \al,\beta>0: \mEt{\mdl{x(t)-x(s)}^\al}\leq C\mdl{t-s}^{1+\beta},\forall s,t\in T,C=C(\al,\beta)
+\end{equation*}
+Тоді існує версія процесу $X(t)$ з майже напевно неперервними траєкторіями.
+\end{teor}
+\begin{proof}
+Доведення не буде, бо воно дуже складне. 
+\end{proof}
+\begin{proof}[Доведення основної теореми]
+Перевіримо умову, яка необхідна для виконання $\al=2$
+\begin{equation}
+\mEt{\cb{w(t)-w(s)}^2} = \mEt{\aleph^2\cb{0,t-s}} = |t-s|^1 ?1\neq 1 +\beta,\beta>0
+\end{equation}
+Не пішло. Візьмемо $\al=4$:
+\begin{equation}
+\mEt{\cb{w(t)-w(s)}^4} = \mEt{\aleph^4\cb{0,t-s}} = |t-s|^2\mEt{\aleph^4\cb{0,1}} = 3|t-s|^2
+\end{equation}
+Отже, умова теореми Колмогорова виконалася з $\al=4,\beta=1$.
+\end{proof}
+\subsubsection{Варіація та довжина вінерівського процесу}
+\begin{equation}
+\Varl_{x\in\bb{a,b}} f(x) = \sup\limits_{\Delta} \suml_{k=1}^n \mdl{f(x_k) - f(x_{k+1})}
+\end{equation}
+\begin{exs}
+$\Var\limits_{x\in\bb{a,b}} \sin x = 1+2+1 = 4$
+\end{exs}
+\begin{teor}
+\begin{equation}
+\mP\set{\Varl_{x\in\bb{a,b}} w(t)=\infty} = 1
+\end{equation}
+\end{teor}
+Квадратична варіація:
+\begin{equation}
+\Vartl_{x\in\bb{a,b}} f(x) = \liml_{\delta\to0} \sup\limits_{\Delta,\max\mdl{x_k-x_{k-1}}\leq\delta} \suml_{k=1}^n \mdl{f(x_k)-f(x_{k-1})}^2
+\end{equation}
+\begin{teor}
+Якщо функція $f(x)$ має $\Varl_{x\in\bb{a,b}} <\infty, f\in C\cb{\bb{a,b}}$, то $\Vartl_{x\in\bb{a,b}} f(x) = 0$
+\end{teor}
+\begin{proof}
+Функція $f(x)$ рівномірно неперервна. Отже
+\begin{equation}
+\forall \eps,\exists \delta=\delta(\eps): \mdl{x-y}\leq \delta \Rightarrow \mdl{f(x)-f(y)} \leq \eps
+\end{equation}
+Зафіксуємо $\eps$ і беремо такі розбиття, що $\max\mdl{x_k-x_{k-1}} < \delta$\\
+\begin{multline}
+\suml_{k=1}^n \mdl{f(x_k) - f(x_{k-1})}^2 \leq \eps \suml_{k=1}^n \mdl{f(x_k)-f(x_{k-1})} \leq \eps \Varl_{x\in\bb{a,b}} f(x) 
+\end{multline}
+Отже, отримали:
+\begin{equation}
+\liml_{\delta\to0} \suml_{k=1}^n \mdl{f(x_k) - f(x_{k-1})}^2 \leq \eps \Varl_{x\in\bb{a,b}} f(x) \xrightarrow[\eps\to 0]{} 0
+\end{equation}
+\end{proof}
+Але для вінерівського процесу $\Vartl w(t)\neq 0$.
+\begin{teor}[Теорема Леві про квадратичну варіацію вінерівського процесу]
+Якщо в нас є послідовність розбиттів відрізку \bb{a,b} такий, що $\max\limits_{k=0,\ldots,n} \mdl{x_k-x_{k-1}} \to 0$, то
+\begin{equation}
+\mL_2-\suml_{k=1}^n \cb{w(x_k) - w(x_{k-1})}^2 \to b-a
+\end{equation}
+\end{teor}
+\begin{proof}
+Перевіримо умову критерію $\mL_2$ збіжності до константи\\
+\begin{eqnarray}
+&\mEt{\xi_a} \to\const\\
+&\mDt{\xi_a} \to 0
+\end{eqnarray}
+\begin{equation}
+\mEt{\suml_{k=1}^n \cb{w(x_k) - w(x_{k-1})}^2} = \suml_{k=1}^n \cb{x_k - x_{k-1}} = b-a
+\end{equation}
+\begin{multline}
+\mDt{\suml_{k=1}^n \cb{w(x_k) - w(x_{k-1})}^2} = \suml_{k=1}^n \mDt{\cb{w(x_k) - w(x_{k-1})}^2} ={}\\{}= \suml_{k=1}^n \mEt{\cb{w(x_k) - w(x_{k-1})}^4} - \suml_{k=1}^n \mEt{\cb{w(x_k) - w(x_{k-1})}^2}^2 ={}\\{}= 3\suml_{k=1}^n \cb{x_k-x_{k-1}}^2 -\suml_{k=1}^n \cb{x_k-x_{k-1}^2} = 2\suml_{k=1}^n \cb{x_k-x_{k-1}}^2 \to0
+\end{multline}
+Отже, з цим умов випливає, що:
+\begin{equation}
+\mL_2-\suml_{k=1}^n \cb{w(x_k) - w(x_{k-1})}^2 \to b-a
+\end{equation}
+\end{proof}
+Отже, ми довели такий факт: $\mP\set{\Vartl_{\bb{a,b}} w = 0} = 0$\\
+Отже, з урахуванням попередньої теореми 
+\begin{equation}
+\mP\set{\Var_{\bb{a,b}} w <\infty} = 0
+\end{equation}
+або 
+\begin{equation}
+\mP\set{\Var_{\bb{a,b}} w = \infty} = 1
+\end{equation}
+\paragraph{Висновок:} Інтеграли вигляду $\intl_a^b f(t)\dif w(t)$ не можна визначити потраєкторно і потрібний більш складний підхід.
+\subsubsection{Ліричний відступ}
+Якщо $\mdl{f'}\leq C$, то
+\begin{equation}
+\Var\leq C\sup \suml_{k=1}^n \cb{x_k-x_{k-1}} = C\cb{b-a} \leq \infty
+\end{equation}
+Отже, $\mP\set{w\not\in C^1 \cb{\bb{a,b}}}=1$
+\begin{teor}
+Для будь-якої точки $\forall t\geq 0$.
+\begin{equation}
+\mP\set{\exists w'(t)}  =0
+\end{equation}
+\end{teor}
+\begin{proof}
+Якщо б існувала похідна 
+\begin{equation}
+w'(t) = \liml_{h\to0} \cfrac{w(t+h)-w(t)}{h}
+\end{equation}
+\begin{equation}
+\mDt{\cfrac{w(t+h)-w(t)}{h}} = \cfrac{h}{h^2} = \cfrac1h
+\end{equation}
+\begin{equation}
+\cfrac{w(t+h)-w(t)}{h} \sim\aleph\cb{0,\cfrac1h}
+\end{equation}
+\begin{equation}
+\chi_{\frac{w(t+h)-w(t)}{h}} (x) = e^{-\frac{x^2}h} \xrightarrow[h\to0]{} 0
+\end{equation}
+Але 0 не характеристична функція, оскільки $\chi(0)=1$
+\end{proof}
+\begin{teor}
+\begin{equation}
+\mP\set{\forall t\geq 0: \not\exists w'(t)} = 1
+\end{equation}
+\end{teor}

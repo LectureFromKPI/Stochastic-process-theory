@@ -1,0 +1,102 @@
+\section{Практика} \marginpar{\framebox{30.04.2014}}
+\begin{tsk}
+\begin{equation}
+\xi = 2 \cdot w(1) - 3 w(2)+4w(3)+5
+\end{equation}
+\begin{equation}
+f_\xi(x) = \cfrac{1}{\gamma \sqrt{2\pi}}e^{-\frac{\cb{x-a}^2}{2\sigma^2}}
+\end{equation}
+Знайдемо розподіл $\xi$:
+\begin{equation}
+\mEx = 2\mEt{w(1)} - 3\mEt{w(2)} +4\mEt{w(3)} + 5 = 5
+\end{equation}
+Знайдемо дисперсію:
+\begin{multline}
+\mDx = \mEt{\cb{\xi-\mEx}^2} = \mEt{\cb{2 \cdot w(1) - 3 w(2)+4w(3)}^2}  ={}\\{}= 4\mEt{w^2(1)}+9\mEt{w^2(2)} + 16\mEt{w^2(3)} -{}\\{}- 12\mEt{w(1)w(2)} - 16\mEt{w(1)w(3)} - 24\mEt{w(2)w(3)}  = 26
+\end{multline}
+Отримали:
+\begin{equation}
+f_\xi(x) = \cfrac{1}{\sqrt{52\pi}}e^{-\frac{\cb{x-5}^2}{52}}
+\end{equation}
+\end{tsk}
+\begin{tsk}
+%милий графік
+\begin{equation}
+\vec{w}(t) = \vect{w_1(t)\\w_2(t)}
+\end{equation}
+Знайдемо $\mEt{\nr{\vec w}(t)}$\\
+\begin{equation}
+\mEt{\nr{\vec w}(t)} = \mEt{\sqrt{w_1^2(t) + w_2^2(t)}}
+\end{equation}
+Розглянемо дещо окремо
+\begin{equation}
+f_{w_1(t)} (x) = f_{w_2(t)} (x) = \cfrac1{\sqrt{2t\pi}} e^{-\frac{x^2}{2t}}
+\end{equation}
+Отже, отримуємо інтеграл:
+\begin{multline}
+\mEt{\nr{\vec w}(t)} ={}\\{}= \int\intl_{\mR^2} \sqrt{x^2+y^2} \cfrac1{2\pi t} e^{-\frac{x^2+y^2}{2t}}\dx\dy = \intl_0^{2\pi} \dif\phi \intl_0^\infty \rho^2 \cfrac1{2\pi t} e^{-\frac{\rho^2}{2t}} \drh = {}\\{} = \intl_0^\infty e^{-\frac{\rho^2}{2t}} \cfrac{\rho^2}t \drh
+\end{multline}
+Розглянемо це окремо:
+\begin{equation}
+\intl_0^\infty e^{-\frac{\rho^2}{2t}} \cfrac{\rho^2}t \drh = \mdl{z = \cfrac{\rho^2}{2t}} = \intl_0^\infty e^{-z} 2z \cfrac{\sqrt t}{\sqrt{2z}} \dz = \sqrt{2t} G\cb{\cfrac32} = \cfrac{\pi t}{2}
+\end{equation}
+\end{tsk}
+\begin{tsk}
+$w(1),w(2),w(5)$ - спостерігається. Знайти оптимальну оцінку для $w(3)$.\\
+Згадаємо формулу:
+\begin{equation}
+\heta = m_\eta + C_{\eta,\xi} \mD^{-1}_\xi \cb{\xi-m_\xi}
+\end{equation}
+\begin{eqnarray}
+&\eta = w(3)\\
+&\vxi = \vect{w(1)\\w(2)\\w(5)}
+\end{eqnarray}
+Відомо, що:
+\begin{eqnarray}
+&m_\eta = 0\\
+&m_\xi = \vect{0\\0\\0}
+\end{eqnarray}
+\begin{multline}
+\mDx ={}\\{}= \begin{pmatrix}
+\mDt{w(1)} & \cdot & \cdot \\
+\cdot & \mDt{w(2)} & \cdot\\
+\cdot &\cdot & \mDt{w(5)} 
+\end{pmatrix} = \begin{pmatrix}
+\mEt{w^2(1)} & \mEt{w(1)w(2)} & \mEt{w(1)w(5)}\\
+\mEt{w(2)w(1)} &\mEt{w^2(2)} & \mEt{w(2)w(5)}\\
+\mEt{w(5)w(1)} & \mEt{w(5)w(2)} & \mEt{w^2(5)}
+\end{pmatrix} ={}\\{} =
+\begin{pmatrix}
+1 & 1 & 1 \\
+1 & 2 & 2\\
+1 & 2 & 5
+\end{pmatrix}
+\end{multline}
+\begin{multline}
+C_{\eta,\xi} = \mEt{\cb{\eta-m_\eta}\mt{\cb{\xi-m_\xi}}} ={}\\{}= \mEt{\eta\cdot \mt{\xi}} = \mEt{w(3) \cdot \cb{w(1),w(2),w(5)}} = {}\\{} = \cb{1,2,5}
+\end{multline}
+Отже, в кінці отримали:
+\begin{equation}
+\heta = \cfrac23 w(2) + \cfrac13 w(5)
+\end{equation}
+\end{tsk} 
+\begin{tsk}
+\begin{equation}
+\tilde{w}(t) = \system{t\cdot w\cb{\cfrac1t},t>0\\0,t=0}
+\end{equation}
+Довести, що $\tilde{w}(t)$ - вінеровський. Для цього мають виконуватися три умови:
+\begin{enumerate}
+\item $\tilde{w}(t)$ - гаусовський процес
+\item $\mEt{\tilde{w}(t)} = 0$
+\item $\mEt{\tilde{w}(t)\tilde{w}(s)} = \min\set{t,s}$
+\end{enumerate}
+Другий та третій пункти очевидні, просто перевіряються в лоб.
+\begin{equation}
+\vect{\tilde{w}(t_1)\\\vdots\\\tilde{w}(t_n)} = \vect{t_1w\cb{\cfrac1{t_1}}\\\vdots\\t_nw\cb{\cfrac1{t_n}}} = \begin{pmatrix}
+t_1 & \ldots & 0 \\
+\vdots&\vdots&\vdots\\
+\ldots & \ldots & t_n
+\end{pmatrix} \cdot \vect{w\cb{\cfrac1{t_1}}\\\vdots\\w\cb{\cfrac1{t_n}}}
+\end{equation}
+Отже, гаусовість зберігається.
+\end{tsk}

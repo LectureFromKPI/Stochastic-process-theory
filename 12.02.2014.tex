@@ -1,0 +1,156 @@
+\section{Елементи аксіоматики А. Н. Колмогорова}\marginpar{\framebox{12.02.2014}}
+Була запропонована у 1933 році у праці "Основні поняття теорія імовірностей" німецькою мовою. \\
+Основним поняттям аксіоматики є $\cb{\Omega,\iF,\mP}$, де $\Omega$ - простір ймовірнісних подій, $F$ - $\sigma$-алгебра подій. $\mP$ - ймовірнісна міра.
+\begin{exs}[Двократне підкидання монетки]\label{tr:1:1}
+\begin{equation*}
+\Omega=\set{RR=\nw1,RG=\nw2,GR=\nw3,GG=\nw4}
+\end{equation*}
+Множина випадкових подій : 
+\begin{equation*}
+\set{\emptyset,\set{RR},\set{RG},\set{GR},\set{GG},\set{RR,RG},\set{RR,GG},\ldots,\Omega}
+\end{equation*}
+$\emptyset$ - неможлива подія. \\
+$\Omega$ - достовірна подія. \\
+Отже, в нас виникло 16 випадкових подій. \\
+\begin{equation*}
+\iF=2^\Omega
+\end{equation*}
+\end{exs}
+Що ми хочемо відносно \iF (класу всіх випадкових подій).
+\begin{itemize}
+\item $\Omega\in\iF$
+\item $A\in\iF\rightarrow A\in\iF$
+\item $\set{A_1,\ldots}\in\iF\rightarrow \bcupl_{i=1}^\infty \in\iF$
+\end{itemize}
+Чому не можна завжди брати в якості $\iF=2^\Omega$?
+\begin{exs}[Контрприклад від G. Vitali]
+Кидаємо матеріальну точку.
+\begin{equation}
+x+y = (x+y)\md 1
+\end{equation}
+Розглянемо на відрізку відношення: $x\sim y \leftrightarrow y-x\in\mQ$
+\begin{eqnarray*}
+A_0 &=& \set{x\in\bb{0,1}:x~0}\\
+A_{\frac{\sqrt3}2} &=& \set{x\in\bb{0,1}:x~\frac{\sqrt3}2}
+\end{eqnarray*}
+Розглянемо деяку множину $E$ - множина, яка включає рівно по одному представнику з кожного класу еквівалентності. \\
+Для будь-якого раціонального числа $\alpha\in\mQ\cap\bcb{0,1}$ для нього існує $E_\alpha = E+\alpha$.\\
+Подія $E$ - точка потрапила у множину $E$.\\
+Можна отримати деякі властивості:
+\begin{itemize}
+\item $\mP\set{E} = \mP\set{E_\alpha},\alpha\in\mQ$\\
+\item $E_\alpha\cap E_\beta = \emptyset,\alpha\neq\beta,\alpha,\beta\in\mQ$\\
+\item $\bcupl_{\alpha\in\mQ} E_\alpha=\bcb{0,1}$
+\end{itemize}
+Отже, ми отримали, що:
+\begin{eqnarray}
+&\mP\set{E} = \mP\set{E_\alpha}=p\\
+&1=\mP\set{\bcb{0,1}}=\mP\set{\bcupl_{\alpha\in\mQ}E_\alpha}=\suml_{\alpha\in\mQ}\mP\set{E_\alpha}=\suml_{n=1}^\infty p
+\end{eqnarray}
+Отримали протиріччя. Помітимо те, що тут використовувалася незліченність відрізку $\bcb{0,1}$
+\end{exs}
+$\mP:\iF\to\bcb{0,+\infty}$ - має бути мірою на \iF\\
+І є лише дві вимоги, яким вона має задовольняти:
+\begin{itemize}
+\item $\sigma$-адитивність: $\forall A_1,\ldots; A_i\cap A_j=\emptyset,i\neq j \rightarrow \mP\set{\bcupl_{i=1}^\infty A_i} = \suml_{i=1}^\infty \mP\set{A_i}$
+\item $\mP\set{\Omega} = 1$
+\end{itemize}
+\begin{nasl}
+$\mP\set{\emptyset}=0$
+\end{nasl}
+\begin{proof}
+$1=\mP\set{\Omega}=\mP\set{\Omega\cup\emptyset} = \mP\set{\Omega}+\mP\set{\emptyset} \rightarrow \mP\set{\emptyset}=0$
+\end{proof}
+\begin{nasl}
+$A\subset B \rightarrow \mP\set{B} \geq \mP\set{A}$
+\end{nasl}
+\begin{proof}
+$\mP\set{B} = \mP\set{A\cup\cb{B\setminus A}} = \mP\set{A} + \mP\set{B\setminus A } \geq \mP\set{A}$\\
+\end{proof}
+\begin{nasl}
+$\forall A:\mP\set{A} \leq 1$
+\end{nasl}
+\begin{proof}
+$A \subset \Omega \rightarrow \mP\set{A} \leq \mP\set{\Omega} = 1$
+\end{proof}
+Випадкова величина є функцією $\xi:\Omega\to\mR$. Більш широко це позначає, що вона вимірно діє на двох вимірних просторах
+\begin{equation}
+\cb{\Omega,\iF}\xrightarrow{\text{вим.}}\cb{\mR,\iB\cb{\mR}}:\forall B\in\iB\cb{\mR}; \xi^{-1}\cb{B}\in\iF
+\end{equation}
+Тобто, дійсно існує ймовірність:
+\begin{equation}
+\mP\set{\xi\in B} = \mP\set{\omega\in\Omega:\xi(\omega)\in B} = \mP\set{\xi^{-1}\cb{B}}
+\end{equation}
+Тоді, можна стверджувати, що:
+\begin{equation}
+\exists  \mP\set{\xi\in\cb{-\infty,x}}=\mP\set{\xi<x} = F_\xi(x)
+\end{equation}
+Випадкові величини можна поділити на типи:
+\begin{itemize}
+\item {\bf Дискретні випадкові величини} - множина значень скінчена або зліченна.
+\item {\bf Неперервні випадкові величини} - функція розподілу неперервна.
+\item {\bf Змішані випадкові величини} - випадкові величини змішаного типу.
+\end{itemize}
+\begin{teor}\label{tr:1:2}
+$\xi$ є неперервною $\leftrightarrow$ $\forall x\in\mR:\mP\set{\xi=x}=0$
+\end{teor}
+\begin{proof}
+$\mP\set{\xi=x}=\mP\set{\bcapl_{n=1}^\infty \xi\in\bcb{x,x+\frac1n}} = \liml_{n\to\infty} \mP\set{\xi\in\bcb{x,x+\frac1n}} = \liml_{n\to\infty} F_\xi(x+\frac1n) -F_\xi(x) = F_\xi(x+0)-F_\xi(x)$
+\end{proof}
+\begin{teor}
+$\xi$ є неперервною $\leftrightarrow$ $\forall B\subset\mR$ - множина, яка є зліченною або скінченною, виконується $\mP\set{\xi\in B} =0$.
+\end{teor}
+\begin{proof}
+Доведемо еквівалентність з попереднім критерієм \ref{tr:1:2}.\\
+Нехай $\forall B\subset\mR:\mP\set{\xi\in B} =0$\\
+Тоді $\forall x_j\in\mR;\mP\set{\xi=x_j} = \mP\set{\xi\in\set{x_j}} = 0 $\\
+З множини в точку - очевидно.\\
+Нехай $\forall x_j \in \mR: \mP\set{\xi=x_j}=0$
+$B=\set{x_1,x_2,\ldots}$\\
+$\mP\set{\xi\in B} = \suml_{j=1}^\infty \mP\set{\xi=x_j} = \suml_{j=1}^\infty 0 = 0$
+\end{proof}
+Випадкова величина називається {\bf абсолютно неперервною величиною}, якщо
+\begin{equation}
+\forall B\subset\mR:\lambda\cb{B} =0\rightarrow\mP\set{\xi\in B}=0
+\end{equation}
+Чому в такому випадку існує щільність розподілу?\\
+$\cb{\Omega,\iF,\mP} \xrightarrow{\xi} \cb{\mR,\iB\cb{\mR},\iPx}$\\
+$\iPx$ - образ міри $\mP$ на \cb{\mR,\iB\cb{\mR}} породжена випадковою величиною $\xi$\\
+$\forall B\in\iB\cb{\mR}:\iPx\cb{B} = \mP\set{\xi^{-1}\cb{B}} = \mP\set{\xi\in B}$
+\begin{exs}[Будування образу міри]
+Умова задачі з попереднього прикладу \ref{tr:1:1}.\\
+Зрозуміло, що $\mP\set{\nw1} = \mP\set{\nw2} = \mP\set{\nw3} = \mP\set{\nw4} = \frac14$\\
+%вставити малюнок 3B
+\begin{tikzpicture}
+\node[circle,draw,label=left:$\frac14$](c1){РР} ;
+\node[circle,draw,below=0.3cm of c1,label=left:$\frac14$](c2){РГ};
+\node[circle,draw,below=0.3cm of c2,label=left:$\frac14$](c3){ГP};
+\node[circle,draw,below=0.3cm of c3,label=left:$\frac14$](c4){ГГ};
+\node[label=right:$\frac14$,right=of c1](g0){0};
+\node[label=right:$\frac12$,below=1.4cm of g0] (g1){1};
+\node[label=right:$\frac14$,right=of c4] (g2){2};
+\path[->]
+(c1) edge (g0)
+(c2) edge (g1)
+(c3) edge (g1)
+(c4) edge (g2);
+\end{tikzpicture}\\
+$\xi$ - кількість гербів. \\
+$\iPx(0)=\frac14,\iPx(1)=\frac12,\iPx(2)=\frac12$
+\end{exs}
+$\iPx$ часто називається {\bf розподілом випадкової величини $\xi$}\\
+Якщо $\xi$ - абсолютно неперервна величина, то виконується:
+\begin{equation}
+\lambda(B)=0\Rightarrow \mP\set{\xi\in B} = 0 \Rightarrow \iPx(B) = 0
+\end{equation}
+Міра $\iPx$ для абсолютно неперервних випадкових величин є абсолютно неперервною відносно міри Лебега.\\
+Отже, можна використовувати теорему Радона-Нікодима:
+\begin{equation}
+\exists f\in \mL_1\cb{\mR,\lambda}:\iPx(B)=\intl_B f(t)\dt
+\end{equation}
+Оскільки це виконувалося для будь-який $B$ ми можемо підставити туди будь-що. Підставимо $\cb{-\infty,x}$\\
+\begin{equation}
+F_\xi(x) = \mP\set{\xi<x} = \intl_{-\infty}^x f(t)\dt
+\end{equation}
+Отже, $f(t)$ - щільність розподілу.\\
+Неперервні випадкові величини, які не є абсолютно неперервними називаються {\bf сингулярними}.\\

@@ -1,0 +1,195 @@
+\marginpar{\framebox{19.03.2014}}
+Чи обов’язково існує розподіл $\liml_{n\to\infty} \kvp^{(n)}$?\\
+Як цей розподіл пов’язаний з початковими?\\
+\begin{exs}
+%малюнок
+\begin{eqnarray*}
+\kvp^{(0)} &=& \cb{1,0}\\
+\kvp^{(2k)} &=& \cb{1,0}\\
+\kvp^{(2k+1)} &=& \cb{0,1}
+\end{eqnarray*}
+\end{exs}
+\begin{exs}
+%малюнок 2
+\begin{eqnarray}
+\kvp^{(0)} &=& \cb{p,q}\\
+\kvp^{(2k)} &=& \cb{p,q}\\
+\kvp^{(2k+1)} &=& \cb{p,q}
+\end{eqnarray}	
+\end{exs}
+\begin{teor}[Ергодична теорема Маркова]
+Нехай ОЛМ і $\exists k\in\mN: \min\limits_{i,j=1,\ldots,n} \pij^{k}>0$\\
+Тобто, існує таке $k$, що за $k$ кроків можна перейти звідки завгодно куди завгодно.\\
+Тоді 
+\begin{itemize}
+\item $\exists \liml_{r\to\infty} \mP^{r} = \mP^{\infty} = \Pi$;
+\item $\Pi = \begin{pmatrix}
+\Pi_1 & \ldots & \Pi_n \\
+\vdots & \vdots & \vdots \\
+\Pi_1 & \ldots &\Pi_n
+\end{pmatrix}$;
+\item $\kv\Pi$ може бути знайдений, як єдиний розв’язок СЛАР
+\begin{equation*}
+\system{&\kv\Pi\mP=\kv\Pi \\ &\Pi_1+\ldots+\Pi_n=1}
+\end{equation*}
+\end{itemize}
+\end{teor}
+\begin{proof}
+Розглянемо матрицю переходу за один крок
+\begin{equation}
+\mP = \begin{pmatrix}
+p_{11} & \ldots & p_{1n} \\
+\vdots & \vdots & \vdots\\
+p_{n1} & \ldots &p_{nn}
+\end{pmatrix}
+\end{equation}
+\begin{equation}
+m_j^{(n)} = \min\limits_i \pij^{(n)}
+\end{equation}
+\begin{equation}
+M_j^{(n)} = \max\limits_i\pij^{(n)}
+\end{equation}
+\begin{tver}
+\begin{eqnarray}
+m_j^{(r+1)} &\geq& m_j^{(r)}\\
+M_j^{(r+1)} &\leq& M_j^{(r)}
+\end{eqnarray}
+\begin{eqnarray}
+&m_j^{(r+1)} = \min\limits_i \pij^{(r+1)}\\
+&\pij^{(r+1)} = \suml_{\al=1}^n p_{i\al}^{(1)}p_{\al j}^{(r)} \geq \suml_{\al=1}^n p_{i\al}^{(1)} \cdot m_j^{(r)} = m_j^{(r)} \suml_{\al=1}^n p_{i\al}^{(1)} = m_j^{(r)}\\
+&\Rightarrow m_j^{(r+1)} \geq m_j^{(r)}
+\end{eqnarray}
+\end{tver}
+Залишилося довести, що $M_j^{(r_l)} - m_j^{(r_l)}\to 0$\\
+\begin{equation}
+M_j^{(k+r)} = \max\limits_i \pij^{(k+r)}
+\end{equation}
+\begin{equation}
+\min\limits_i \pij^{(k)} = \eps
+\end{equation}
+\begin{multline}
+\pij^{(k+r)} = \suml_{\al=1}^n p_{i\al}^{(k)} p_{\al j}^{(r)} = \suml_{\al=1}^n \underbrace{\cb{p_{i\al}^{(k)} -p_{j\al}^{(r)}\eps}}_{\geq 0} p_{\al j}^{(r)} + \suml_{\al=1}^n p_{j\al}^{(r)} \eps p_{\al j}^{(r)} \leq \suml_{\al=1}^n \cb{p_{i\al}^{(k)} - p_{j\al}^{(r)}\eps}M_j^{(r)} + \eps p_{jj}^{(2r)} = {} \\ {} = M_j^{(r)} \cb{\suml_{\al=1}^n \cb{p_{i\al}^{(k)} - p_{j\al}^{(r)}\eps}} + \eps p_{jj}^{(2r)} = (1-\eps) M_j^{(r)} +\eps p_{jj}^{(2r)}
+\end{multline}
+\begin{equation}
+\Rightarrow M_j^{(k+r)} \geq (1-\eps) M_j^{(r)} +\eps p_{jj}^{(2r)}
+\end{equation}
+Аналогічно можна отримувати з мінімумом:
+\begin{equation}
+\Rightarrow m_j^{(k+r)} \leq (1-\eps) m_j^{(r)} +\eps p_{jj}^{(2r)}
+\end{equation}
+Остаточно ми отримуємо:
+\begin{equation}
+M_j^{(k+r)} - m_j^{(k+r)} \leq (1-\eps)\cb{M_j^{(r)}-m_j^{(r)}}
+\end{equation}
+\begin{eqnarray}
+r=0:& M_j^{(k)} - m_j^{(k)} \leq (1-\eps)\cb{M_j^{(0)}-m_j^{(0)}}\\
+&M_j^{(2k)} - m_j^{(2k)} \leq (1-\eps)^2\cb{M_j^{(0)}-m_j^{(0)}}\\
+&\vdots\nonumber\\
+&M_j^{(l\cdot k)} - m_j^{(l\cdot k)} \leq (1-\eps)^l\cb{M_j^{(0)}-m_j^{(0)}}\\
+\end{eqnarray}
+Отже, отримали:
+\begin{equation}
+l\to\infty M_j^{(lk)} - m_j^{(lk)} \to 0
+\end{equation}
+Отже, за підпослідовністю у нас є збіжність. А після цього і для всієї послідовності.\\
+Як знайти $\Pi_1,\ldots,\Pi_n$?\\
+\begin{equation}
+\Pi = \liml_{r\to\infty} \mP^{r}
+\end{equation}
+$\mP^r$ - матриця переходу за $r$ кроків. Сума в кожному рядку дорівнює одиниці. \\
+Тоді і для матриці $\Pi$ сума в рядку дорівнює одинці.\\
+\begin{equation}
+\suml_{i=1}^n \Pi_i = 1
+\end{equation}
+\begin{eqnarray}
+&\mP^n\mP = \mP^{n+1}\\
+n\to\infty:&\Pi\mP = \Pi\\
+&\begin{pmatrix}
+\Pi_1 & \ldots & \Pi_n \\
+\vdots & \vdots & \vdots \\
+\Pi_1 & \ldots &\Pi_n
+\end{pmatrix} \mP = \begin{pmatrix}
+\Pi_1 & \ldots & \Pi_n \\
+\vdots & \vdots & \vdots \\
+\Pi_1 & \ldots &\Pi_n
+\end{pmatrix} \\
+& \kv\Pi\mP=\kv\Pi
+\end{eqnarray}
+Отже, $\Pi$ можна знайти, як розв’язок системи 
+\begin{equation}
+\system{\kv\Pi\mP=\kv\Pi\\ \suml_{i=1}^n \Pi_i=1}
+\end{equation}
+Залишилося довести, що ця система має лише єдиний розв’язок.\\
+Якщо $\kvp^{(0)}$, то який буде $\kvp^{(\infty)}$
+\begin{multline}
+\kvp^{(\infty)} = \liml_{n\to\infty} \kvp^{(n)} = \liml_{n\to\infty} \kvp^{(0)} \cdot \mP^n = \kvp^{(0)} \liml_{n\to\infty} \mP^n = \kvp^{(0)}\Pi ={} \\ {} = \cb{p_1^{(0)},\ldots,p_n^{(0)}} \cdot \begin{pmatrix}
+\Pi_1 & \ldots & \Pi_n \\
+\vdots & \vdots & \vdots \\
+\Pi_1 & \ldots &\Pi_n
+\end{pmatrix} = \cb{\Pi_1,\ldots,\Pi_n}
+\end{multline}
+Отже, для кожного розподілу граничним розподілом є $\Pi$.\\
+Нехай, окрім розв’язку $\kv\Pi$ є ще розв’язок $\vec\nu$\\
+\begin{eqnarray}
+&\vec\nu\mP^{\infty} = \vec\nu \Pi = \kv\Pi\\
+&\vec\nu\mP^{\infty} = \liml_{n\to\infty} \vec\nu \mP^n = \vec\nu
+\end{eqnarray}
+\end{proof}
+\begin{exs}
+Згадаємо дядю Гришу. Його матриця переходів:
+\begin{equation}
+P = \begin{pmatrix}
+0 & \frac13 & \frac23 \\
+\frac13 & 0 & \frac23 \\
+\frac23 & \frac13 & 0
+\end{pmatrix}
+\end{equation}
+Хочемо знайти розподіл на нескінченності. Перевіримо спочатку умови за графом:
+\begin{tikzpicture}[node distance=3cm]
+\node[circle,fill,label=left:Дім=1cm] (c1) {};
+\node[circle,fill,below right=of c1,label=below:Пивна] (c3) {};
+\node[circle,fill,above right=of c3,label=right:Завод] (c2) {};
+\path[->]
+(c1) edge[bend left] node[above]{$\frac13$} (c2)
+(c2) edge node[below right]{$\frac13$} (c1)
+(c1) edge[bend right] node[below]{$\frac23$} (c3)
+(c3) edge node[above right]{$\frac23$} (c1)
+(c2) edge[bend left] node[below]{$\frac23$} (c3)
+(c3) edge node[above]{$\frac13$} (c2)
+;
+\end{tikzpicture}\\
+При $k=2$ умови виконані. Отже, можемо записати систему:
+\begin{equation}
+\system{\kv\Pi\mP=\kv\Pi \\ \Pi_1+\Pi_2+\Pi_3 = 1}
+\end{equation}
+\begin{equation}
+\system{\cfrac13\Pi_2+\cfrac23\Pi_3 = \Pi_1 \\
+\cfrac13\Pi_1+\cfrac13\Pi_3 = \Pi_2\\
+\cfrac23\Pi_1 + \cfrac23\Pi_2 = \Pi_3\\
+\Pi_1+\Pi_2+\Pi_3 = 1
+}
+\end{equation}
+Отримали розв’язок:
+\begin{equation}
+\kv\Pi=\cb{\cfrac7{20},\cfrac14,\cfrac25}
+\end{equation}
+\end{exs}
+\subsection{Частота потрапляння в деякий стан}
+\begin{equation}
+\nu_k^{(r)} = \cfrac{\mI_{\xi_1=k}+\ldots+\mI_{\xi_r=k}}{r}
+\end{equation}
+\begin{teor}[Закон великих чисел для ОЛМ]
+Якщо виконується умова ергодичності, тобто $\min\limits_{i,j}p_{ij}^{(k)} >0,\exists k\in\mN$\\
+То $\exists \mP\liml_{r\to\infty} \nu_k^{(r)} = \Pi_k$\\
+\end{teor}
+\begin{proof}
+Ідея доведення: будемо доводити збіжність в середньому квадратичному. За критерієм, потрібно перевірити, що:
+\begin{eqnarray}
+\mEt{\cfrac{\mI_{\xi_1=k}+\ldots+\mI_{\xi_r=k}}{r}} &\to&\Pi_k\\
+\mDt{\cfrac{\mI_{\xi_1=k}+\ldots+\mI_{\xi_r=k}}{r}} &\to&0
+\end{eqnarray}
+Розберемося спочатку з першим фактом:
+\begin{multline}
+\mEt{\cfrac{\mI_{\xi_1=k}+\ldots+\mI_{\xi_r=k}}{r}} \to\Pi_k = \cfrac1r \cb{\mP\set{\xi_1=k}+\ldots+\mP\set{\xi_r=k}} ={} \\ {}= \cfrac1r \cb{p_k^{(1)} +\ldots + p_k^{(r)}} \xrightarrow[r\to\infty]{}\Pi_k
+\end{multline}
+\end{proof}

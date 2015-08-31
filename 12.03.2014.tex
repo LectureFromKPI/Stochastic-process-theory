@@ -1,0 +1,152 @@
+\marginpar{\framebox{12.03.2014}}
+Коли ймовірність виродження дорівнює 1?\\
+\begin{teor}
+Якщо $\xi$ - кількість нащадків. Тоді ймовірність виродження дорівнює 1, якщо $\mEx\leq1$, і менше одинці, коли $\mEx>1$.
+\end{teor}
+\begin{nasl}[Виняток]
+Якщо $\mP\set{\xi=1}=1$, то ймовірність виродження буде нульовою.
+\end{nasl}
+\begin{proof}
+Нехай $G(z)\not\equiv z$\\
+Доведемо, що:$\mEx>1\Rightarrow \mP_{d}<1$
+\begin{equation}
+\mEx = G'(1)
+\end{equation}
+В точці 1 - співпадають $G(1)=1$.\\
+В околі 1 $G'(z)>z$\\
+%Малюнок 1
+Тоді $\exists z^*<1:G(z^*) = z^*$\\
+Тепер, нехай $\mEx\leq 1$. Методом від супротивного $\mP_d<1$. Тоді $\exists z^*<1;G(z^*)=z^*$.\\
+Тоді за теоремою Лагранжа $\exists y: G'(y)=1$. Але тоді похідна в останній точці $G'(1)>1$, а отже $\mEx>1$, а це протиріччя.
+\end{proof}
+\noindent За цим критерієм можна розбити процеси Гальтона-Ватсона на три типи:
+\begin{enumerate}
+\item $\mEx<1$ - \textbf{докритичний} випадок. Ймовірність виродження строго дорівнює 1;
+\item $\mEx=1$ - \textbf{критичний} випадок. Ймовірність виродження строго дорівнює 1, окрім винятку;
+\item $\mEx>1$ - \textbf{надкритичний} випадок. Ймовірність виродження строго менше за 1.
+\end{enumerate}
+\section{Ланцюги Маркова}
+%малюнок 2
+Розглянемо простір станів (або скінчений, або злічений) $E=\set{1,\ldots,n,(\ldots)}$. З’являються випадкові величини $\xi_k$ - номер стану, в якому знаходиться частинка після $k$-того кроку. $\xi_k\in E$.
+\subsection{Марківська властивість}
+Ця властивість є вкрай необхідною для ланцюгів Маркова.
+\begin{equation}
+\mP\set{\xi_{k+1}=i_{k+1}\setminus\set{\xi_1=i_1,\ldots,\xi_k=i_k}} = \mP\set{\xi_{k+1}=i_{k+1}\setminus\set{\xi_k=i_k}}
+\end{equation}
+Тобто, при теперішньому, що фіксовано, майбутнє не залежить від минулого.
+Розглянемо таку ймовірність:
+\begin{equation}
+\mP\set{\xi_{k+1}=j\setminus \xi_k=i}
+\end{equation}
+Якщо ця ймовірність не залежить від $k$. Тобто, в будь-який момент часу ймовірність переходу зі стану $i$ в стан $j$ однакова, то це ланцюг Маркова називають \textbf{однорідним ланцюгом Маркова} і саме з такими однорідними ланцюгами Маркова ми будемо працювати.\\
+Оскільки ланцюг Маркова у нас тепер однорідний, можемо ввести таке позначення:
+\begin{equation}
+\mP\set{\xi_{k+1}=j\setminus \xi_k=i} = \pij
+\end{equation}
+Надалі, деякий час припускаємо, що $E$ - скінченний простір аж до спеціального попередження. В такому випадку ми можемо розглянути матрицю:
+\begin{equation}
+P = \begin{pmatrix}
+p_{11} & \ldots &p_{1n}\\
+\vdots & \vdots & \vdots\\
+p_{n1} & \ldots & p_{nn} 
+\end{pmatrix}
+\end{equation}
+$P$ - це \textbf{матриця перехідних ймовірностей}.
+\subsection{Властивості матриці перехідних ймовірностей}
+\begin{enumerate}
+\item $\forall i,j\in\set{1,\ldots,n}:\pij\in\bb{0,1}$;
+\item $\suml_{j=1}^n \pij = 1,\forall i\in\set{1,\ldots,n}$, тобто $P$ відноситься до класу \textbf{стохастичних матриць};
+\item $P-I$ - матриця, у якої $\suml_{j=1}^n \pij-1 = 0,\forall i\in\set{1,\ldots,n}$; Отже, $\det\cb{P-I}=0$. А з цього випливає, що $1$ - це власне число матриці $P$;
+\end{enumerate}
+\subsection{Дві основні характеристики ланцюга Маркова}
+Це матриця перехідних ймовірностей $P$ та початковий розподіл (який задається у вигляді ковектора) $\kvp^{(0)}$\\
+Знайдемо ймовірність на $k+1$-шому кроці.
+\begin{multline}
+p_i^{(k+1)} = \mP\set{\xi_{k+1} = i} = \suml_{j=1}^n\mP\set{\xi_k = j}\mP\set{\xi_{k+1} = i \setminus  \xi_k=j} ={} \\ {} = \sumjon p_j^{(k)} p_{ji} = p_1^{(k)} p_{1i}+\ldots+p_n^{(k)}p_{ni}
+\end{multline}
+Отже, тепер ми можемо стверджувати, що 
+\begin{eqnarray}
+\kvp^{(1)} &=& \kvp^{(0)} \cdot P\\
+\kvp^{(2)} &=& \kvp^{(1)} \cdot P = \kvp^{(0)}\cdot P^2\\
+&\vdots&\nonumber\\
+\kvp^{(k+1)} &=& \kvp^{(k)} \cdot P =\kvp^{(0)}\cdot P^k
+\end{eqnarray}
+\begin{exs}
+Є дядя Гриша. У нього є три стани: дім, завод і пивна. Задаємо матрицю переходів:
+%Розмір точок
+\begin{tikzpicture}[node distance=3cm]
+\node[circle,fill,label=left:Дім=1cm] (c1) {};
+\node[circle,fill,below right=of c1,label=below:Пивна] (c3) {};
+\node[circle,fill,above right=of c3,label=right:Завод] (c2) {};
+\path[->]
+(c1) edge[bend left] node[above]{$\frac13$} (c2)
+(c2) edge node[below right]{$\frac13$} (c1)
+(c1) edge[bend right] node[below]{$\frac23$} (c3)
+(c3) edge node[above right]{$\frac23$} (c1)
+(c2) edge[bend left] node[below]{$\frac23$} (c3)
+(c3) edge node[above]{$\frac13$} (c2)
+;
+\end{tikzpicture}\\
+Задача. Відомо, що дядя Гриша був вдома. Ймовірність того, що після $k$-го кроку він буде в пивній.
+\begin{eqnarray*}
+&\kvp^{(0)} = \vect{1\\0\\0}\\
+&P = \begin{pmatrix}
+0 & \frac13 & \frac23 \\
+\frac13 & 0 & \frac23 \\
+\frac23 & \frac13 & 0
+\end{pmatrix}
+\end{eqnarray*}
+Шукаємо власні числа цієї матриці. Одне з цих власних чисел, це $1$.\\
+\begin{equation*}
+\det \cb{A-\la I} = \begin{vmatrix}
+-\la & \frac13 & \frac23 \\
+\frac13 & -\la & \frac23 \\
+\frac23 & \frac13 & -\la
+\end{vmatrix} = -\la^3 +\cfrac79\la + \cfrac29
+\end{equation*}
+Поділимо цей многочлен на $\la-1$: $-\la^2-\la-\cfrac29$\\
+Після розв’язку цього рівняння отримуємо три власні числа: $\la=\set{1,-\cfrac23,-\cfrac13}$\\
+Отже, після переходу отримаємо таку матрицю:
+\begin{equation*}
+P_i = \begin{pmatrix}
+1 & 0 & 0\\
+0 & -\cfrac13 & 0 \\
+0 & 0 & -\cfrac23
+\end{pmatrix}
+\end{equation*}
+Перемножимо її $k$ разів, щоб отримати правильну відповідь:
+\begin{equation*}
+P_i^k = \begin{pmatrix}
+1 & 0 & 0\\
+0 & (-1)^k\cfrac1{3^k} & 0 \\
+0 & 0 & (-1)^k\cfrac{2^k}{3^k}
+\end{pmatrix}
+\end{equation*}
+Спробуємо зхитрити та не знаходити власні вектори: $p_3^{(k)}$ - лінійне перетворення $\vect{1\\ (-1)^k\cfrac1{3^k}\\(-1)^k\cfrac{2^k}{3^k}}$.\\
+Отже, отримуємо, що:
+\begin{equation*}
+p_3^{(k)} = a+ (-1)^k\cfrac1{3^k}b +(-1)^k\cfrac{2^k}{3^k}c
+\end{equation*}
+Підставимо різні значення $k$, щоб створити систему: 
+\begin{eqnarray}
+p_3^{(0)} &=& 0\\
+p_3^{(1)} &=& \cfrac23\\
+p_3^{(2)} &=& \cfrac29
+\end{eqnarray}
+Отже, отримали систему:
+\begin{eqnarray}
+0 &=& a + b + c\\
+\cfrac23 &=& a - \cfrac b3 - \cfrac{2c}3\\
+\cfrac29 &=& a + \cfrac b9 + \cfrac49 c
+\end{eqnarray}
+Розв’яжемо цю систему:
+\begin{eqnarray}
+a&=& \cfrac25\\
+b&=& 0\\
+c&=& -\cfrac25\\
+\end{eqnarray}
+Отже, отримали відповідь:
+\begin{equation*}
+p_3^{(k)} = \cfrac25  +(-1)^{k+1}\cfrac{2^{k+1}}{5\cdot 3^k}
+\end{equation*}
+\end{exs}

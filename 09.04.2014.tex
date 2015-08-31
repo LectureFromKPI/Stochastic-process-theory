@@ -1,0 +1,159 @@
+\chapter{Випадкові процеси} 
+\section{Основні поняття}\marginpar{\framebox{09.04.2014}}
+\textbf{Випадковий процес} $\cb{X(t),t\in T}$ - це сукупність випадкових величин $X(t)$, індексованих параметром $t\in T$, які задані на спільному ймовірнісному просторі $\cb{\Omg,\iF,\mP}$\\
+Розглянемо деякі випадки:
+\begin{itemize}
+\item $T={1}$ - випадкова величина;
+\item $T={1,2,\ldots,n}$ - випадковий вектор;
+\item $T=\mN$ - випадкова послідовність. Також, цей випадок допускає будь-яку злічену множину;
+\item $T=\bb{a,b},\cb{a,b},\ldots$ - тобто, деякий інтервал. І це буде називатися просто випадковий процес.
+\item $T=\mR^d$ - випадкове поле.
+\end{itemize}
+Фактично, параметр $t$ можна ототожнювати з часом.\\
+Отже, випадковий процес $X$ - це функція від двох змінних $X\cb{t,\omg}$. Тоді, з цієї точки зору, можна сказати, що $X:T\times\Omg\to \mR$. Оскільки нам необхідна випадковість, то необхідно вимагати, щоб:
+\begin{equation}
+\forall t\in T:X(t,\cdot) - \text{вимірна, відсно }\iF\setminus \iB\cb{\mR}
+\end{equation}
+$X(t,\cdot)$ - випадкове значення нашого процесу $X$ в момент $t$.\\
+$X(\cdot,\omg)$ - \textbf{траєкторія} або \textbf{реалізація} випадкового процесу $X$.\\
+\begin{exs}
+В нас є параметрична множина $T=\cb{0,90}$.\\
+В момент $\tau$ на пару приходить Павло. $\tau\sim U\cb{0,90}$.\\
+Тепер введемо деякий випадковий процес: $X(t)$ - кількість Павлів на парі у момент $t$.\\
+\begin{equation*}
+X(t)=\system{
+0, t<\tau\\
+1, t\geq \tau
+}
+\end{equation*}
+%Намалюємо траєкторію:\\
+%Намалювати графік цієї штуки
+\end{exs}
+\subsection{Основна характеристика випадкового процесу}
+Основна характеристика випадкового процесу це \textbf{система скінченновимірних розподілів}.
+\begin{itemize}
+\item Одновимірні функції розподілу:\\
+\begin{equation}
+F_X(t,x) = \mP\set{X(t)<x}
+\end{equation}
+Одновимірний розподіл:
+\begin{equation}
+P_t(B) = \mP\set{X(t)\in B};B\in\iB\cb{\mR^1}
+\end{equation}
+\item Двовимірні функції розподілу:\\
+\begin{equation}
+F_X(t_1,t_2,x_1,x_2) = \mP\set{X(t_1)< x_1 \cap X(t_2) < x_2}
+\end{equation}
+Двовимірний розподіл:
+\begin{equation}
+P_{t_1,t_2} (B) = \mP\set{(X(t_1),X(t_2)}\in B;B\in\iB\cb{\mR^n}
+\end{equation}
+І так далі можна ввести $n$-вимірні функції розподілу і $n$-вимірний розподіл.
+\end{itemize}
+\subsubsection{Система випадкових розподілів}
+Потрібно задати усю систему - $\forall n\geq 1,\forall t_1,\ldots,t_n \in T$.
+\begin{exs}
+\begin{equation*}
+X(t) = \system{0,t<\tau\\1,t\geq \tau}
+\end{equation*}
+$t$ - фіксуємо.\\
+\begin{center}
+\begin{tabular}{|c|c|c|}
+$X(t)$ & 0 & 1 \\
+\hline
+$\mP$ & $1-\cfrac t{90}$ & $\cfrac t{90}$
+\end{tabular}
+\end{center}
+Двовимірний розподіл: фіксуємо $t_1,t_2(t1\leq t_2)$.\\
+\begin{center}
+\begin{tabular}{|c|c|c|}
+$X(t_2)\setminus X(t_1)$ & 0 & 1 \\
+\hline
+0 & $1 - \cfrac t{90}$ & 0 \\
+\hline
+1 & $\cfrac{t_2-t_1}{90}$ & $\cfrac{t_1}{90}$
+\end{tabular}
+\end{center}
+$X(t_1) = X(t_2) =0$\\
+\end{exs}
+\subsection{Властивості скінченновимірного розподілу}
+Розглянемо $P_{t_1,\ldots,t_n} (B),B\in\iB\cb{\mR^n}$.\\
+%Знайти у когось тут властивосты
+\begin{teor}[Теорема Колмагорова]
+Нехай задана система скінченновимірних розподілів: $P_{t_1,\ldots,t_n}(B_1\times \ldots\times B_n),\forall n\in\mN$:\\
+яка задовольняє попереднім умовам %тим, які потрібно у когось знайти
+Тоді, на деякому ймовірнісному просторі $\cb{\Omg,\iF,\mP}$ існує випадковий процес $X(t,\omg)$, який має саме цю систему скінченних розподілів.
+\end{teor}
+\section{$\mL_2$-процеси}
+$X$ - це \textbf{$\mL_2$-процес}, якщо:
+\begin{equation}
+\forall t:\mEt{\mdl{X(t)}}<\infty \vee \mEt{\mdl{X(t)}^2}<\infty
+\end{equation}
+Тоді можемо ввести \textbf{математичне сподівання}:
+\begin{equation}
+m(t) = \mEt{X(t)},t\in T
+\end{equation}
+Це може бути будь-яка функція, без будь-яких обмежень.\\
+\textbf{Кореляційна функція}:
+\begin{equation}
+C_x(s,t) = \mEt{\cb{X(s)-m(s)}\overline{\cb{X(t)-m(t)}}} = \mEt{X(s)\overline{X(t)}} - \cb{\mEt{X(s)}}\overline{\cb{\mEt{X(t)}}}
+\end{equation}
+Чому вона існує:
+\begin{equation}
+\mdl{\mEt{\cb{X(s)-m(s)}\overline{\cb{X(t)-m(t)}}}} \leq \sqrt{\mEt{\mdl{X(s)-m(s)}^2} + \mEt{\mdl{X(t)-m(t)}}^2} < \infty
+\end{equation}
+\subsection{Властивості кореляційної функції}
+\begin{teor}[Ермітовість]
+$C_x(s,t) = \overline{C_x(t,s)}$ 
+\end{teor}
+\begin{proof}
+Позначимо: $X_0(t) = X(t) - m(t)$\\
+\begin{equation*}
+C_x(t,s) = \mEt{X_0(t)\overline{X_0(s)}} = \overline{\mEt{X_0(s)\overline{X_0(t)}}} = \overline{C_x(s,t)}
+\end{equation*}
+\end{proof}
+\begin{teor}
+Розглянемо $\vec X = \vect{X(t_1)\\ \vdots \\ X(t_n)}$\\
+$C_{\vec X} = \mdl{\mdl{C_x(t_i,t_j)}}_{i,j=1,\ldots,n}$ \\
+Оскільки це дуже схоже на кореляційну матрицю, вона отримує деяку її властивість:
+$\forall t_1,\ldots,t_n:\mdl{\mdl{C_x(t_i,t_j)}}_{i,j=1,\ldots,n}$ - невід’ємно визначена.
+\end{teor}
+А це означає, що така квадратична форма:
+\begin{equation}
+\cb{\mdl{\mdl{C_x(t_i,t_j)}}_{i,j=1,\ldots,n} \vec b,\vec b} \geq 0,\forall \vec b \in \mC^n
+\end{equation}
+Або, якщо переписати у вигляді суми:
+\begin{equation} \label{tr:8:1}
+\suml_{i=1}^n \suml_{j=1}^n C_x\cb{t_i,t_j} b_i\overline{b_j} \geq 0,\forall b_1,\ldots,b_n\in\mC
+\end{equation}
+Отже, кореляційна функція завжди ермітово симетрична і задовольняє властивість \eqref{tr:8:1}. Функції, що задовольняють умові \eqref{tr:8:1}, то вони називаються \textbf{невід’ємно визначеними}.
+\begin{teor}
+Якщо функція є ермітово симетричною та невідємно визначеною, то вона є кореляційною функцією.
+\end{teor}
+\begin{proof}
+Фіксуємо $n\geq 1$.\\
+Фіксуємо $t_1,\ldots,t_n\in T$.\\
+Тоді матриця $С = \mdl{\mdl{C_x(t_i,t_j)}}_{i,j=1,\ldots,n} $ - є невід’ємно визначеною та ермітовою.\\
+Тоді, $P_{t_1,\ldots,t_n} (B)=$ розподіл Гаусовського вектора з кореляційною матрицею $\mdl{\mdl{C_x(t_i,t_j)}}_{i,j=1,\ldots,n}$\\
+Тоді, за теоремою Колмагорова, можна побудувати процес.
+\end{proof}
+\begin{exs}
+$T = \bb{0,+\infty}$\\
+$C(s,t) = \min\set{s,t}$\\
+\begin{itemize}
+\item $\min{s,t} = \min\set{t,s}$ - симетричність;
+\item $\mdl{\mdl{\min\set{s,t}}}_{i,j=1,\ldots,n}$ - невід’ємна визначна (раніше було).
+\end{itemize}
+\end{exs}
+\begin{exs}
+\begin{equation}
+X(t) = \system{0, t<\tau \\ 1, t>\tau}
+\end{equation}
+\begin{equation}
+m(t) = \mEx{X(t)} = 0 \mP\set{X(t)=0} + 1\cdot \mP\set{x(t) = 1} = \cfrac t{90}
+\end{equation}
+Тепер шукаємо кореляційну функцію:
+\begin{equation}
+C(s,t) = \mEt{X(t)\cdot X(s)} - \mEt{X(t)} \mEt{X(s)} = \cfrac{\min\set{s,t}}{90} - \cfrac{st}{8100}
+\end{equation}
+\end{exs}

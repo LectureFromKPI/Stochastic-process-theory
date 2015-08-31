@@ -1,0 +1,50 @@
+Отримали ще два дивних питання:\marginpar{\framebox{24.05.2014}}
+\begin{enumerate}
+\item $\phi(0)=?$
+\item $x_i = Exp(\la)$ - єдина ситуація, в яких це рівняння можна чесно та аналітично розв’язати.
+\end{enumerate}
+Перше питання:\\
+Що відбувається при $u\to+\infty:$
+\begin{equation}
+	1 = \phi(0) +\cfrac\la c \intl_0^\infty 1 \cdot \overline{F}(t)\dt
+\end{equation}
+Також можна зобразити у такому вигляді:
+\begin{equation}
+	1 = \phi(0) + \cfrac\la c m
+\end{equation}
+А отже,
+\begin{equation}
+	\phi(0) = 1 - \cfrac\la c m
+\end{equation}
+Друге питання:
+\begin{equation}
+	\phi(u) = 1 -\cfrac\la c m + \cfrac\la c \intl_0^u \phi(u-t) \overline{F}(t)\dt 
+\end{equation}
+Якщо $x_i=Exp(\al)$, то $m=\cfrac1\la, \overline{F}(t) = e^{-\al t},t\geq 0$
+\begin{equation}
+	\phi(u) = 1 - \cfrac{\la}{c\al} + \cfrac\la c \intl_0^u \phi(u-t) e^{-\al t} \dt
+\end{equation}
+Використаємо перетворення Лапласа
+\begin{equation}
+	\Phi(p) = \cfrac{1-\frac{\la}{c\al}}p +\cfrac\la c \Phi(p) \cfrac1{p+\al} 
+\end{equation}
+Перенесемо всі $\Phi(p)$ в одну частину
+\begin{equation}
+	\Phi(p) \cb{1 - \cfrac{\la}{c\cb{p+\al}}} = \cfrac{1-\frac{\la}{c\al}}p
+\end{equation}
+Ну і поділимо на коефіцієнт при $\Phi(p)$
+\begin{equation}
+	\Phi(p) = \cfrac{\cb{c\al -\la}  \cb{p+\al}}{c \al p\cb{\cb{p+\al} -\frac\la c}}
+\end{equation}
+Розкладемо на прості дроби
+\begin{equation}
+	\Phi(p) = \cb{1 - \cfrac{\la}{c\al}} \cb{ \cfrac{\al}{\cb{\al - \frac\la c}p} - \cfrac{\frac\la c}{\cb{\al - \frac\la c}\cb{p +\al  - \frac\la c}} }
+\end{equation}
+Використаємо зворотнє перетворення Лапласа
+\begin{equation}
+	\phi(u) = 1 - \cfrac{\la}{\al c} e^{-\cb{\al - \frac\la c}u}
+\end{equation}
+Тоді ймовірність банкрутства буде така:
+\begin{equation}
+	\psi(u) = \cfrac{\la}{\al c} e^{-\cb{\al - \frac\la c}u}
+\end{equation}

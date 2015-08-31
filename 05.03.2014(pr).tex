@@ -1,0 +1,102 @@
+\section{Практика}\marginpar{\framebox{05.03.2014}}
+\begin{tsk}
+$\xi\sim Pois\cb{\la}$ - кількість студентів. \\
+Студент здає іспит з ймовірністю $p$ і не здає з ймовірністю $1-p$.\\
+Потрібно довести, що кількість тих, хто склад іспит також розподілена $\sim Pois\cb{\la p}$.
+\begin{multline}
+\mP\set{\eta=k} = \suml_{i=k}^\infty \mP\set{\xi=i}\cdot \mP\set{\eta=k\setminus\xi=i} = \suml_{i=k}^\infty \cfrac{e^{-\la}\la^i}{i!} C^k_i p^k \cb{1-p}^{i-k} ={}\\{}= e^{-\la} p^k \suml_{i=k}^\infty \cfrac{\la^i}{i!} C^k_i \cb{1-p}^{i-k} = \begin{vmatrix}
+j=i-k
+\end{vmatrix} = e^{-\la} p^k \suml_{j=0}^\infty \cfrac{\la^{j+k}}{(j+k)!} C^k_{j+k} \cb{1-p}^{j} = {} \\ {}= \cfrac{e^{-\la}\la^k}{k!} p^k \suml_{j=0}^\infty \cfrac{\la^j}{j!} \cb{1-p}^j =  \cfrac{e^{-\la}\la^k}{k!} p^k \cdot e^{\la(1-p)} = \cfrac{e^{-p\la} \cb{\la p}^k}{k!}
+\end{multline}
+\end{tsk} 
+\begin{tsk}
+$\veps=\vect{\eps_1\\\eps_2\\\eps_3\\\eps_4\\\eps_5}$\\
+Це \textbf{вектор білого шуму}, тобто:
+\begin{itemize}
+\item $\mEt{\eps_i}=0,\forall i$;
+\item $\mDt{\eps_i}=1,\forall i$;
+\item $\mEt{\eps_i\eps_j}=0,\forall i,j:i\neq j$.
+\end{itemize}
+Будуємо з нього інший вектор:
+\begin{equation}
+\vu = \vect{\eps_1+\eps_2+\eps_3+\eps_4+\eps_5\\2\eps_1-\eps_2-\eps+4+2\eps_5\\\eps_1+3\eps_3+\eps_5\\ \eps_2-\eps_1\\ \eps_5-\eps_4}
+\end{equation}
+Спостерігаються координати з непарними номерами, а знайти оцінку координат з парними номерами.
+\begin{eqnarray}
+\vxi=\vect{\eps_1+\eps_2+\eps_3+\eps_4+\eps_5\\ \eps_1+3\eps_3+\eps_5 \\ \eps_5-\eps_4}\\
+A_{\vxi} = \begin{pmatrix}
+1 & 1 & 1 & 1 & 1 \\
+1 & 0 & 3 & 0 & 1\\
+0 & 0 & 0 & -1 & 1
+\end{pmatrix}\\
+\veta = \vect{2\eps_1-\eps_2-\eps+4+2\eps_5\\ \eps_2-\eps_1}\\
+B_{\vxi} = \begin{pmatrix}
+2 & -1 & 0 & -1 & 2 \\
+-1 & 1 & 0 & 0 & 0
+\end{pmatrix}
+\end{eqnarray}
+Запишемо формулу оцінки:
+\begin{equation}
+\hveta = \vm_{\veta} + C_{\veta,\vxi} \iD_{\vxi}^{-1} \cb{\vxi-\vm_{\vxi}}
+\end{equation}
+З умови відомо, що:
+\begin{equation}
+\vm_{\veta}=\vec 0;\vm_{\vxi} = \vec 0
+\end{equation}
+Знайдемо дисперсійну матрицю:
+\begin{multline}
+\iD_{\vxi} = \mEt{\cb{\vxi-\mEvx}\mt{\cb{\vxi-\mEvx}}} = \mEt{\cb{A\veps-\mEt{A\veps}}\mt{\cb{A\veps-\mEt{A\veps}}}} = {} \\ {} =  \mEt{A\cb{\veps-\mEt{\veps}}\mt{A\cb{\veps-\mEt{\veps}}}} = \mEt{A\cb{\veps-\mEt{\veps}}\mt{\cb{\veps-\mEt{\veps}}}\mt{A}} = {} \\ {} = A\underbrace{\mEt{\cb{\veps-\mEt{\veps}} \mt{\cb{\veps-\mEt{\veps}}}}}_{\iD_{\veps}}\mt{A} = A\mt A
+\end{multline}
+Здогадаємося по аналогії до формули:
+\begin{equation}
+C_{\veta,\vxi} = B \mt A
+\end{equation}
+Отже, отримали:
+\begin{equation}
+\hveta = B\mt A \cb{A \mt A}^{-1}\vxi = \begin{pmatrix}
+\frac{17}{55} & \frac1{11} & \frac{16}{11}\\
+\frac2{11}& -\frac{2}{11} & \frac1{11}
+\end{pmatrix}\cdot\vect{\xi_1\\ \xi_2\\ \xi_3}
+\end{equation}
+\end{tsk}
+\begin{tsk}
+Саша та Маша стріляють в лося. Кожен робить по 10 пострілів, при чому навіть у мертве тіло. Ймовірність потрапляння Саші $0.9$, а Маши $0.5$. Спостерігається загальна кількість влучень, побудувати лінійну оцінку для кількості потраплянь Саші.\\
+%Хтось запишіть сюди задачу
+\end{tsk}
+\begin{tsk}
+Випадкова величина $X \sim U(\bb{0,\cfrac\pi2})$. Спостерігається $\sin$, оцінити $\cos$.
+\begin{eqnarray}
+&\xi = \sin X;\eta = \cos X\\
+&\mEe = \cfrac2\pi \\
+&\mEx = \cfrac2\pi\\
+&\mEt{\xi^2} = \cfrac12\\
+&\mDx=\cfrac12 - \cfrac4{\pi^2}\\
+&K_{\xi,\eta} = \cfrac1\pi - \cfrac4{\pi^2}\\
+&\heta = \cfrac2\pi +\cb{\cfrac1\pi -\cfrac4{\pi^2}}
+\end{eqnarray}
+%Допишіть хтось
+\end{tsk}
+\begin{tsk}
+Розподіл числа потомків є геометричним з параметром $p$.\\
+Знайти ймовірність виродження гіллястого процесу.
+%Перепишіть хтось
+\end{tsk}
+\subsection{Домашнє завдання}
+\begin{tsk}\label{pr:2:1}
+Маша стріляє в круглу ціль радіусу 1 метр. Точка потрапляння рівномірно розподілена в цьому колі. Спостерігається відхилення від центра по горизонталі. Знайти оптимальну лінійну оцінку відхилення по вертикалі. Відхилення обчислюється через модулі.\\
+$\mdl{\xi}$ - відстань по горизонталі.\\
+$\mdl{\eta}$ - відстань по вертикалі.\\
+\begin{equation}
+\mdl{\heta} = m_{\mdl{\eta}} + C_{\mdl{\eta},\mdl{\xi}} D^{-1}\cb{\mdl{\xi}-m_{\mdl\xi}}
+\end{equation}
+%очевидно, зробити самому потім
+\end{tsk}
+\begin{tsk}
+Спостерігається обидва відхилення в задачі \eqref{pr:2:1}. Оцінити відстань від точки потрапляння до центру мішені. 
+\end{tsk}
+\begin{tsk}
+Теж сама задача, що й \eqref{pr:2:1}, але в нас тепер немає мішені. Координати точки потрапляння це незалежні гаусовські величини. Спостерігаються відхилення від вісей, оцінити відстань від точки потрапляння до початку координат.
+\end{tsk}
+\begin{tsk}
+Число потомків має пуасонівський розподіл. Яким має бути параметр цього розподіл, щоб ймовірність виродження дорівнювала $\cfrac12$.
+\end{tsk}

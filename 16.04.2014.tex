@@ -1,0 +1,134 @@
+\section{Гаусовський процес} \marginpar{\framebox{16.04.2014}}
+Процес $X(t)$ називається \textbf{гаусовським}, якщо:
+\begin{equation}
+\forall n\in\mN;t_1,\ldots,t_n\in T: \vect{X(t_1)\\\vdots\\ X(t_n)} - \text{гаусовский}
+\end{equation}
+\subsection{Критерій гаусовості випадкового вектора}
+\begin{teor}
+Вектор $\vxi = \vect{\xi_1\\\vdots\\\xi_n}$ є гаусовським тоді і тільки тоді, коли кожна лінійна комбінація вигляду $c_1\xi_1+\ldots+c_n\xi_n$ є гаусовою величиною.
+\end{teor}
+\begin{proof}
+$\Rightarrow$\\
+Якщо вектор дійсно гаусовський, то $c_1\xi_1+\ldots+c_n\xi_n$ - це лінійне перетворення, а отже, гаусовське.\\
+$\Leftarrow$\\
+Нехай $\forall\set{c_1,\ldots,c_n}:c_1\xi_1+\ldots+c_n\xi_n$ - є гаусівською.\\
+\begin{equation}
+\mEt{c_1\xi_1+\ldots+c_n\xi_n} = c_1a_1+\ldots+c_na_n = (\vec c,\vec a)
+\end{equation}
+$B$ - кореляційна матриця $\vxi$.
+\begin{multline}
+\mDt{c_1\xi_1+\ldots+c_n\xi_n} = \mDt{(\vec c,\vec a)} = \text{кор. матриця вектора } (\vec c,\vec a) = {} \\ {} = \overleftarrow{c}B_{\vxi} \vec c = (B_{\vxi} \vec c,\vec c)
+\end{multline}
+Запишемо тепер характеристичну функцію нашої комбінації. \\
+Згадаємо формулу:
+\begin{equation}
+\gam\sim\aleph{a.\sigma^2}: \chi_{\gamma} (t)= e^{-iat - \frac{\sigma^2 t^2}{2}}
+\end{equation}
+А тепер запишемо формулу у нашому випадку:
+\begin{equation}
+\chi_{c_1\xi_1+\ldots+c_n\xi_n} (t) = e^{i(\vec c,\vec a) t - \frac{\cb{B_{\vxi} \vec c,\vec c}^2t^2}{2}}
+\end{equation}
+\begin{equation}
+\chi_{c_1\xi_1+\ldots+c_n\xi_n} (1) = e^{i(\vec c,\vec a) - \frac{\cb{B_{\vxi} \vec c,\vec c}^2}{2}}
+\end{equation}
+З іншого боку:
+\begin{equation}
+\chi_{c_1\xi_1+\ldots+c_n\xi_n} (1) = \mEt{e^{1\cdot i \cdot \cb{c_1\xi_1+\ldots+c_n\xi_n}}} = \mEt{e^{i\cb{\vec c,\vxi}}} = \chi_{\vxi} (\vec c)
+\end{equation}
+Отже, $\vxi$ - гаусовський вектор.
+\end{proof}
+\begin{nasl}
+Процес $\cb{X(t),t\in T}$ є гаусовським тоді і тільки тоді, коли:
+\begin{equation}
+\forall n\in\mN:,t_1,\ldots,t_n\in T,c_1,\ldots,c_n \in \mR: \suml_{i=1}^n c_i X(t_i) - \text{гаусовський}
+\end{equation}
+\end{nasl}
+Гаусовський процес повністю визначається за $m(t)$ та $C_x(s,t)$.
+\section{Вінеровський процес (Броунівський рух)}
+$S_n$ - положення частки у рідині у момент дискретного часу $n$.\\
+$\set{\xi_i,i\geq 1}$ - незалежні та мають такий розподіл:
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+$\xi$ & -1 & 1 \\
+\hline
+$\mP$ & $\dfrac12$ & $\dfrac12$\\
+\hline
+\end{tabular}
+\end{center}
+Процес $(S_n,n\geq 0)$\\
+\begin{equation}
+m(n) = \mEt{S_n} = \mEt{\xi_1+\ldots+\xi_n} = 0
+\end{equation}
+\begin{multline}
+C_s(n_1,n_2) = \mdl{n_1\leq n_2} = \mEt{\cb{S_{n_1} - m(n_1)}\cb{S_{n_2}-m(n_2)}} ={}\\{}= \mEt{S_{n_1}\cdot S_{n_2}} = \mEt{\cb{\xi_1+\ldots+\xi_{n_1}}\cb{\xi_1+\ldots+\xi_{n_2}}} = {} \\ {} =\mEt{x_1+\ldots+\xi_{n-1}}^2 + \mEt{\cb{\xi_1+\ldots+\xi_{n_1}}\cb{\xi_{n_1+1}+\ldots+\xi_{n_2}}} ={} \\ {}=\mDt{\xi_1+\ldots+\xi_{n_1}} = n_1
+\end{multline}
+В загальному випадку:
+\begin{equation}
+C_s(n_1,n_2) = \min\set{n_1,n_2}
+\end{equation}
+%графік траекторії випадкового блукання
+Новий процес $X(t) = \cfrac{1}{c}S\cb{tc^2}$\\
+\begin{equation}
+\mEt{X(t)} = \cfrac1c \mEt{S\cb{ t{c^2}}} = 0
+\end{equation}
+\begin{equation}
+C_x(s,t) = \mEt{\cfrac1c S\cb{s{c^2}}\cfrac1c S\cb{t{c^2}}} = \cfrac1{c^2} \mEt{S\cb{ s{c^2}} S\cb{ t{c^2}}} = \cfrac1{c^2} \min\set{sc^2,tc^2} = \min\set{s,t}
+\end{equation}
+При одночасному масштабуванні часу в $c^2$ разів в простору в $c$ разів, в нового процесу $X(t)$ зберігаються такі самі математичні сподівання і кореляційна функція як і у не масштабованого процесу.\\
+Спрямуємо $c$ до нескінченності:
+\begin{equation}
+X(t)=?-\liml_{c\to+\infty} \cfrac1c S\cb{c^2t}
+\end{equation}
+\textbf{Вінерівським процесом} або \textbf{броунівським рухом} називають процес $\cb{W(t),t>0}$, який задовольняє три властивості:
+\begin{enumerate}
+\item $W(t)$ - гаусовський процес;
+\item $\mEt{W(t)}=0$;
+\item $C_W(s,t) = \mEt{W(s),W(t)} = \min\set{s,t}$;
+\end{enumerate}
+\subsection{Властивості Вінерівського процесу}
+\begin{enumerate}
+\item Вінерівський процес існує.\\
+	$\min\set{s,t}$ - невід’ємно визначений та симетричний.\\
+	Отже, можна побудувати в $\mR^n$ відповідний розподіл з математичним сподіванням $\vec 0$ та з матрицею $\mdl{\mdl{\min{t_1,t_2}}}$. Отже, 			за теоремою Колмагорова можна побудувати такий випадковий процес.
+\item $w(0)=0$ майже напевно. Тобто $\mP\set{w(0)=0}=1$\\
+	\begin{proof}
+	$\mEt{w(0)}0$\\
+	$\mEt{w^2(0)} = \mEt{w(0)w(0)} = \min{0,0}=0$\\
+	$\Rightarrow \mP\set{w(0)=0}=1$
+	\end{proof}
+%графік Вінерівскього процесу 
+\item Глянемо на $W(t)$ через лупу. \\
+	\begin{equation}
+	\tilde{w}(t) = \cfrac1c w(c^2t)
+	\end{equation}
+	Стверджується, що це також вінерівський процес.\\
+	\begin{enumerate}
+	\item $\mEt{\tilde w(t)} = \cfrac1c \mEt{w\cb{c^2t}} = 0$
+	\item $C_{\tilde w} (t) = \mEt{\tilde{w}(s),\tilde{w}(t)} = \cfrac1{c^2} \min\set{sc^2,tc^2} = \min\set{s,t}$
+	\item Чому цей процес знову гаусовський?\\
+		\begin{equation}
+		\vect{\tilde w(t_1)\\\vdots\\\tilde w(t_n)} = \cfrac1c\vect{w(t_1c^2)\\\vdots\\w(t_nc^2)} -\text{гаусовський}
+		\end{equation}
+	\end{enumerate}
+\item $w(t+h)-w(t)\sim\aleph\cb{0,h}$
+	\begin{proof}
+	Те, що ця величина гаусівськая очевидно, оскільки вона є різницею двох величин, які утворюють гаусовський вектор.\\
+	\begin{equation}
+	\mEt{w(t+h)-w(t)} = 0
+	\end{equation}
+	\begin{multline}
+	\mDt{w(t+h)-w(t)} ={} \\ {} = \mEt{\cb{w(t+h)-w(t)}^2} = \mEt{w^2(t+h)}+\mEt{w^2(t)} - {} \\ {} - 2\mEt{w(t+h)w(t)} = h
+	\end{multline}
+	\end{proof}	
+\item Вінерівський процес має незалежні прирости. \\
+	$0\leq s_1\leq t_1 \leq \ldots\leq s_n\leq t_n$\\
+	Тоді $w(t_1)-w(s_1),\ldots,w(t_n)-w(s_n)$ є незалежними величинами у сукупності
+	\begin{proof}
+	$s_i\leq t_i \leq s_j \leq t_j$\\
+	\begin{multline}
+	\mEt{\cb{w(t_i)-w(s_i)}\cb{w(t_j)-w(s_j)}} = {} \\ {} = \mEt{w(t_i)w(t_j)} - \mEt{w(t_i)w(s_j)} - \mEt{w(s_i)w(t_j)} +\mEt{w(s_i)w(s_j)} 			={} \\ {} = t_i-t_i - 			s_i + s_i = 0
+	\end{multline}
+	Отже, вони некорельовані. А в силу гаусовості вектора $\vect{w(t_1)-w(s_1)\\\vdots\\w(t_n)-w(s_n)}$, вони тоді й незалежні.
+	\end{proof}
+\end{enumerate}
